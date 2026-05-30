@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meine Klausuren – Prüfung mit Lösung</title>
+<style>
+:root{--purple:#7a4e9e;--purple-d:#3d2a52;--purple-l:#f3ecf7;--ink:#1d2421;--grey:#5f6b66;--line:#e6e2ec;--bg:#f6f4f9;--card:#fff;}
+*{box-sizing:border-box;} body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:18px;}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px;}
+header.hero{background:linear-gradient(135deg,var(--purple-d),var(--purple) 80%,#a374c6);color:#fff;padding:50px 0 40px;text-align:center;}
+header.hero h1{margin:0 0 8px;font-size:clamp(2rem,5vw,3rem);font-weight:800;} header.hero p{margin:0;opacity:.95;font-weight:300;font-size:1.12rem;}
+.spruch{background:#fff5e6;border-bottom:1px solid #f0e0c0;color:#7a5a14;text-align:center;padding:14px 20px;font-size:1.1rem;font-style:italic;font-weight:500;}
+.spruch button{margin-left:10px;border:none;background:#f0dcae;color:#7a5a14;border-radius:999px;width:28px;height:28px;cursor:pointer;}
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+nav .wrap{display:flex;flex-wrap:wrap;gap:6px 16px;padding:13px 20px;justify-content:center;}
+nav a{color:var(--purple-d);text-decoration:none;font-weight:600;padding:4px 2px;border-bottom:3px solid transparent;}
+nav a:hover,nav a.active{border-color:var(--purple);}
+.burger{display:none;background:none;border:none;font-size:1.7rem;line-height:1;cursor:pointer;color:#3d2a52;padding:2px 8px;}
+@media(max-width:760px){nav .wrap{justify-content:flex-start!important;}.burger{display:block;}nav .wrap>a{display:none;width:100%;padding:9px 2px;}nav .wrap.open>a{display:block;}}
+section{padding:38px 0;}
+h2{font-size:1.7rem;color:var(--purple);margin:0 0 6px;font-weight:800;}
+.lead{color:var(--grey);font-size:1.1rem;margin:0 0 14px;}
+.disclaimer{background:#fff5e6;border-radius:12px;padding:14px 18px;color:#7a5a14;font-size:.98rem;margin-bottom:24px;}
+.klausur{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:18px;box-shadow:0 6px 20px rgba(60,42,82,.05);}
+.kh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:12px;}
+.kh h3{margin:0;font-size:1.3rem;color:var(--purple-d);} .kh .dt{color:var(--grey);font-size:.9rem;font-weight:700;}
+a.open{display:inline-block;background:var(--purple);color:#fff;text-decoration:none;border-radius:10px;padding:11px 18px;font-weight:700;font-size:1rem;}
+a.open:hover{filter:brightness(1.08);} a.open.sol{background:#1f9f6b;}
+details{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px;}
+details summary{cursor:pointer;font-weight:700;color:var(--purple);font-size:1.05rem;list-style:none;}
+details summary::-webkit-details-marker{display:none;}
+details summary::before{content:"▸ ";} details[open] summary::before{content:"▾ ";}
+.prev{display:block;width:100%;height:70vh;border:1px solid var(--line);border-radius:10px;margin-top:12px;background:#fafafa;}
+footer{padding:34px 0 60px;text-align:center;color:var(--grey);font-size:.95rem;}
+</style></head><body>
+<header class="hero"><div class="wrap"><h1>Meine Klausuren</h1><p>Deine Original-Klausuren – Aufgabe öffnen, Lösung aufklappen</p></div></header>
+<div class="spruch" id="spruch"></div>
+<nav><div class="wrap"><button class="burger" aria-label="Menü" onclick="this.closest('.wrap').classList.toggle('open')">☰</button>
+  <a href="index.html">Start</a>
+  <a href="steuerberater.html">Steuerberater</a>
+  <a href="klausuren.html">Klausuren</a>
+  <a href="pruefungssimulation.html">Simulation</a>
+  <a href="meine-klausuren.html" class="active">Meine Klausuren</a>
+  <a href="kurs.html">Kurs</a>
+  <a href="lernmaterial.html">Lernmaterial</a>
+  <a href="kalender.html">Kalender</a>
+  <a href="Partnerin-Tagestracker.html">Mein Tag</a>
+</div></nav>
+<section><div class="wrap">
+<h2>📝 Prüfung & Lösung</h2>
+<p class="lead">Erst die Aufgabe öffnen und lösen, dann unten die Lösung aufklappen.</p>
+<div class="disclaimer">ℹ️ Die PDFs liegen im Ordner „Kursunterlagen" <b>neben dieser Datei</b>. Die Links funktionieren, wenn du die Seite und den Ordner zusammen auf deinem Computer hast (Datei <b>vom Ordner aus</b> öffnen). Klick auf „öffnen" zeigt die PDF in einem neuen Tab. Auf der öffentlichen GitHub-Seite sind diese geschützten Dateien bewusst nicht enthalten.</div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Fallsammlung</h3><span class="dt">13.04.2026</span></div>
+    <a class="open" href="Kursunterlagen/13-04-2026-fallsammlung.pdf" target="_blank" rel="noopener">📄 Aufgabe öffnen</a>
+    <details><summary>✅ Lösung</summary>
+      <a class="open sol" href="Kursunterlagen/13-04-2026-fallsammlung-loesungen.pdf" target="_blank" rel="noopener">✅ Lösung öffnen</a>
+      <iframe class="prev" data-src="Kursunterlagen/13-04-2026-fallsammlung-loesungen.pdf" title="Lösung-Vorschau"></iframe>
+    </details>
+  </div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Fall 1 – Bilanz</h3><span class="dt">13.04.2026</span></div>
+    <a class="open" href="Kursunterlagen/13-04-2026-wiederholerlehrgang-fall-1-bilanz.pdf" target="_blank" rel="noopener">📄 Aufgabe öffnen</a>
+  </div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Fall 2 – Bilanz</h3><span class="dt">29.04.2026</span></div>
+    <a class="open" href="Kursunterlagen/29-04-2026-wiederholerlehrgang-fall-2-bilanz.pdf" target="_blank" rel="noopener">📄 Aufgabe öffnen</a>
+  </div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Kurzklausur Bilanz 1</h3><span class="dt">30.04.2026</span></div>
+    <a class="open" href="Kursunterlagen/30-04-2026-wiederholerlehrgang-kurzklausur-bilanz-1-sachverhalt.pdf" target="_blank" rel="noopener">📄 Aufgabe öffnen</a>
+    <details><summary>✅ Lösung</summary>
+      <a class="open sol" href="Kursunterlagen/30-04-2026-wiederholerlehrgang-kurzklausur-bilanz-1-lo-sung-neu.pdf" target="_blank" rel="noopener">✅ Lösung öffnen</a>
+      <iframe class="prev" data-src="Kursunterlagen/30-04-2026-wiederholerlehrgang-kurzklausur-bilanz-1-lo-sung-neu.pdf" title="Lösung-Vorschau"></iframe>
+    </details>
+  </div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Kurzklausur Bilanz 2</h3><span class="dt">30.04.2026</span></div>
+    <a class="open" href="Kursunterlagen/30-04-2026-wiederholerlehrgang-kurzklausur-bilanz-2-sachverhalt.pdf" target="_blank" rel="noopener">📄 Aufgabe öffnen</a>
+    <details><summary>✅ Lösung</summary>
+      <a class="open sol" href="Kursunterlagen/30-04-2026-wiederholerlehrgang-kurzklausur-bilanz-2-lo-sung.pdf" target="_blank" rel="noopener">✅ Lösung öffnen</a>
+      <iframe class="prev" data-src="Kursunterlagen/30-04-2026-wiederholerlehrgang-kurzklausur-bilanz-2-lo-sung.pdf" title="Lösung-Vorschau"></iframe>
+    </details>
+  </div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Fall 3 – Bilanz</h3><span class="dt">20.05.2026</span></div>
+    <a class="open" href="Kursunterlagen/20-05-2026-wiederholerlehrgang-fall-3-bilanz.pdf" target="_blank" rel="noopener">📄 Aufgabe öffnen</a>
+  </div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Fall 4 – Bilanz</h3><span class="dt">25.05.2026</span></div>
+    <a class="open" href="Kursunterlagen/25-05-2026-fall-4-bilanz-2026.pdf" target="_blank" rel="noopener">📄 Aufgabe öffnen</a>
+  </div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Kurzklausur 1</h3><span class="dt">27.05.2026</span></div>
+    <a class="open" href="Kursunterlagen/27-05-2026-wiederholerlehrgang-kurzklausur-1-sachverhalt.pdf" target="_blank" rel="noopener">📄 Aufgabe öffnen</a>
+    <details><summary>✅ Lösung</summary>
+      <a class="open sol" href="Kursunterlagen/27-05-2026-wiederholerlehrgang-kurzklausur-1-loesung.pdf" target="_blank" rel="noopener">✅ Lösung öffnen</a>
+      <iframe class="prev" data-src="Kursunterlagen/27-05-2026-wiederholerlehrgang-kurzklausur-1-loesung.pdf" title="Lösung-Vorschau"></iframe>
+    </details>
+  </div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Kurzklausur 2</h3><span class="dt">27.05.2026</span></div>
+    <a class="open" href="Kursunterlagen/27-05-2026-wiederholerlehrgang-kurzklausur-2-sachverhalt.pdf" target="_blank" rel="noopener">📄 Aufgabe öffnen</a>
+    <details><summary>✅ Lösung</summary>
+      <a class="open sol" href="Kursunterlagen/27-05-2026-wiederholerlehrgang-kurzklausur-2-loesung.pdf" target="_blank" rel="noopener">✅ Lösung öffnen</a>
+      <iframe class="prev" data-src="Kursunterlagen/27-05-2026-wiederholerlehrgang-kurzklausur-2-loesung.pdf" title="Lösung-Vorschau"></iframe>
+    </details>
+  </div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Kurzklausur 6</h3><span class="dt">27.05.2026</span></div>
+    <a class="open" href="Kursunterlagen/27-05-2026-wiederholerlehrgang-kurzklausur-6-sachverhalt.pdf" target="_blank" rel="noopener">📄 Aufgabe öffnen</a>
+    <details><summary>✅ Lösung</summary>
+      <a class="open sol" href="Kursunterlagen/27-05-2026-wiederholerlehrgang-kurzklausur-6-lo-sung.pdf" target="_blank" rel="noopener">✅ Lösung öffnen</a>
+      <iframe class="prev" data-src="Kursunterlagen/27-05-2026-wiederholerlehrgang-kurzklausur-6-lo-sung.pdf" title="Lösung-Vorschau"></iframe>
+    </details>
+  </div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Kurzklausur 3 (inkl. Lösung)</h3><span class="dt">27.05.2026</span></div>
+    <a class="open" href="Kursunterlagen/27-05-26-wiederholerlehrgang-kurzklausur-3-inkl-lo-sung.pdf" target="_blank" rel="noopener">📄 Klausur inkl. Lösung öffnen</a>
+  </div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Kurzklausur 4 (inkl. Lösung)</h3><span class="dt">27.05.2026</span></div>
+    <a class="open" href="Kursunterlagen/27-05-26-wiederholerlehrgang-kurzklausur-4-inkl-lo-sung.pdf" target="_blank" rel="noopener">📄 Klausur inkl. Lösung öffnen</a>
+  </div>
+
+  <div class="klausur">
+    <div class="kh"><h3>Fall 5 – Bilanz</h3><span class="dt">27.05.2026</span></div>
+    <a class="open" href="Kursunterlagen/27-05-2026-wiederholerlehrgang-fall-5-bilanz-2026.pdf" target="_blank" rel="noopener">📄 Aufgabe öffnen</a>
+  </div>
+</div></section>
+<footer><div class="wrap">Erst selbst lösen, dann vergleichen – du schaffst das! 💪</div></footer>
+<script>
+document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>{
+  if(d.open){const f=d.querySelector('iframe[data-src]'); if(f&&!f.src) f.src=f.dataset.src;}
+}));
+const SP=["Erst selbst lösen, dann vergleichen.","Jede Klausur macht dich sicherer.","Erst die Arbeit, dann das Meer. 🌊","Du hast schon so viel geschafft.","Zukünftige Steuerberaterin im Aufbau. 💪"];
+const e=document.getElementById("spruch");let i=Math.floor(Date.now()/86400000)%SP.length;
+function sh(){e.innerHTML="„"+SP[i]+"“ <button onclick='nx()'>↻</button>";}function nx(){i=(i+1)%SP.length;sh();}sh();
+</script>
+</body></html>
