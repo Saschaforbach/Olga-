@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prüfungssimulation – Bilanzsteuerrecht</title>
+<style>
+  :root{
+    --purple:#7a4e9e; --purple-d:#3d2a52; --purple-l:#f3ecf7;
+    --teal:#1f9f8a; --ink:#1d2421; --grey:#5f6b66; --line:#e6e2ec; --bg:#f6f4f9; --card:#fff;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:18px;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px;}
+  header.hero{background:linear-gradient(135deg,var(--purple-d),var(--purple) 75%,#a374c6);color:#fff;padding:54px 0 42px;text-align:center;}
+  header.hero h1{margin:0 0 8px;font-size:clamp(2rem,5vw,3.1rem);font-weight:800;}
+  header.hero p{margin:0;opacity:.95;font-size:1.15rem;font-weight:300;}
+  .spruch{background:#fff5e6;border-bottom:1px solid #f0e0c0;color:#7a5a14;text-align:center;padding:14px 20px;font-size:1.12rem;font-style:italic;font-weight:500;}
+  .spruch button{margin-left:10px;border:none;background:#f0dcae;color:#7a5a14;border-radius:999px;width:28px;height:28px;cursor:pointer;}
+  nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;flex-wrap:wrap;gap:6px 16px;padding:13px 20px;justify-content:center;}
+  nav a{color:var(--purple-d);text-decoration:none;font-weight:600;padding:4px 2px;border-bottom:3px solid transparent;}
+  nav a:hover,nav a.active{border-color:var(--purple);}
+  section{padding:42px 0;border-bottom:1px solid var(--line);}
+  h2{font-size:clamp(1.6rem,4vw,2.2rem);color:var(--purple);margin:0 0 6px;font-weight:800;display:flex;gap:10px;align-items:center;}
+  .lead{color:var(--grey);font-size:1.12rem;margin:0 0 18px;}
+  .disclaimer{background:#fff5e6;border-radius:12px;padding:14px 18px;color:#7a5a14;font-size:.98rem;margin-bottom:22px;}
+  /* Timer */
+  .timer{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:10px;}
+  .timer .clock{font-size:2.2rem;font-weight:800;color:var(--purple-d);font-variant-numeric:tabular-nums;min-width:130px;}
+  .timer button{border:none;border-radius:9px;padding:10px 16px;font-weight:700;cursor:pointer;font-size:.95rem;background:var(--purple);color:#fff;}
+  .timer button.ghost{background:#fff;color:var(--purple);border:1.5px solid var(--purple);}
+  .timer select{padding:9px 10px;border:1.5px solid var(--line);border-radius:9px;font-size:.95rem;}
+  /* Klausur cards */
+  .klausur{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 6px 20px rgba(60,42,82,.05);}
+  .klausur .tag{display:inline-block;background:var(--purple-l);color:var(--purple-d);border-radius:999px;padding:4px 14px;font-size:.82rem;font-weight:700;margin-bottom:10px;}
+  .klausur .pts{float:right;color:var(--grey);font-size:.9rem;font-weight:700;}
+  .klausur h3{margin:0 0 12px;font-size:1.3rem;color:var(--purple-d);}
+  .klausur .frage{font-weight:600;margin:12px 0 0;}
+  details{margin-top:16px;border-top:1px dashed var(--line);padding-top:14px;}
+  details summary{cursor:pointer;font-weight:700;color:var(--purple);font-size:1.05rem;list-style:none;}
+  details summary::-webkit-details-marker{display:none;}
+  details summary::before{content:"▸ ";} details[open] summary::before{content:"▾ ";}
+  details .loesung{margin-top:12px;background:var(--purple-l);border-radius:10px;padding:14px 18px;}
+  details .loesung p{margin:0 0 8px;} details .loesung b{color:var(--purple-d);}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+  .toolbar button{border:1.5px solid var(--purple);background:#fff;color:var(--purple);border-radius:9px;padding:9px 15px;font-weight:700;cursor:pointer;font-size:.92rem;}
+  footer{padding:34px 0 60px;text-align:center;color:var(--grey);font-size:.95rem;}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1>Prüfungssimulation</h1>
+    <p>Bilanzsteuerrecht – eigene Übungsfälle mit Lösung zum Aufklappen</p>
+  </div>
+</header>
+
+<div class="spruch" id="spruch"></div>
+
+<nav><div class="wrap">
+  <a href="index.html">Start</a>
+  <a href="steuerberater.html">Steuerberater</a>
+  <a href="klausuren.html">Klausuren</a>
+  <a href="pruefungssimulation.html" class="active">Simulation</a>
+  <a href="lernmaterial.html">Lernmaterial</a>
+  <a href="Partnerin-Tagestracker.html">Mein Tag</a>
+</div></nav>
+
+<section><div class="wrap">
+  <h2><span>⏱️</span>So funktioniert's</h2>
+  <p class="lead">Stell den Timer, lös die Fälle erst selbst auf Papier – im Gutachtenstil – und klapp danach die Lösung auf. Genau wie in der echten Klausur zählt die Technik, nicht nur das Wissen.</p>
+  <div class="timer">
+    <span class="clock" id="clock">90:00</span>
+    <select id="mins">
+      <option value="15">15 Min</option>
+      <option value="30">30 Min</option>
+      <option value="45">45 Min</option>
+      <option value="60">60 Min</option>
+      <option value="90" selected>90 Min</option>
+    </select>
+    <button onclick="startTimer()">Start</button>
+    <button class="ghost" onclick="pauseTimer()">Pause</button>
+    <button class="ghost" onclick="resetTimer()">Zurücksetzen</button>
+  </div>
+  <div class="disclaimer">⚠️ Eigene Übungsfälle zum Trainieren – inspiriert von deinen Kursthemen, aber neu formuliert. Beträge, Sätze und Fristen am <b>aktuellen Rechtsstand</b> prüfen (z. B. § 7g, § 7b ändern sich). Deine Original-Kursklausuren kannst du privat im PDF-Bereich der <a href="klausuren.html">Klausuren-Seite</a> öffnen.</div>
+</div></section>
+
+<section><div class="wrap">
+  <h2><span>📝</span>Kurzklausuren</h2>
+  <div class="toolbar">
+    <button onclick="toggleAll(true)">Alle Lösungen zeigen</button>
+    <button onclick="toggleAll(false)">Alle Lösungen verbergen</button>
+  </div>
+
+  <div class="klausur">
+    <span class="pts">10 Punkte</span><span class="tag">§ 6 EStG – Teilwert</span>
+    <h3>Kurzklausur 1 – Teilwertabschreibung</h3>
+    <p>Die A-GmbH hat eine Produktionsmaschine. Buchwert nach planmäßiger AfA zum 31.12.01: <b>40.000 €</b>. Durch eine technische Neuerung am Markt ist die Maschine voraussichtlich dauerhaft nur noch <b>25.000 €</b> wert. Restnutzungsdauer 5 Jahre.</p>
+    <p class="frage">Mit welchem Wert ist die Maschine zum 31.12.01 in Handels- und Steuerbilanz anzusetzen?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p>Es liegt eine <b>voraussichtlich dauernde Wertminderung</b> vor.</p>
+      <p><b>Handelsbilanz:</b> außerplanmäßige Abschreibung ist <b>Pflicht</b> (§ 253 Abs. 3 S. 5 HGB) → Ansatz <b>25.000 €</b>.</p>
+      <p><b>Steuerbilanz:</b> Teilwertabschreibung ist ein <b>Wahlrecht</b> (§ 6 Abs. 1 Nr. 1 S. 2 EStG). Um Handels- und Steuerbilanz gleichlaufen zu lassen, ebenfalls <b>25.000 €</b>.</p>
+      <p>Erholt sich der Wert später, gilt das <b>Wertaufholungsgebot</b> (§ 6 Abs. 1 Nr. 1 S. 4 EStG) bis max. zu den fortgeführten AK/HK.</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="pts">12 Punkte</span><span class="tag">§ 7g EStG – IAB</span>
+    <h3>Kurzklausur 2 – Investitionsabzugsbetrag</h3>
+    <p>Einzelunternehmer B (Gewinn unter 200.000 €) plant für 02 die Anschaffung einer Maschine mit voraussichtlichen Anschaffungskosten von <b>50.000 €</b>. Er möchte bereits in 01 steuerlich profitieren. In 02 schafft er die Maschine tatsächlich für 50.000 € an.</p>
+    <p class="frage">Welche Auswirkungen ergeben sich in 01 und 02?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p><b>01:</b> Investitionsabzugsbetrag = 50 % von 50.000 € = <b>25.000 €</b>, außerbilanziell gewinnmindernd (§ 7g Abs. 1 EStG).</p>
+      <p><b>02 (Anschaffung):</b> außerbilanzielle <b>Hinzurechnung</b> von 25.000 € (§ 7g Abs. 2 S. 1) und wahlweise gewinnmindernde <b>Herabsetzung der AK</b> um bis zu 25.000 € (§ 7g Abs. 2 S. 3) → neue AfA-Bemessungsgrundlage 25.000 €.</p>
+      <p>Zusätzlich möglich: <b>Sonderabschreibung</b> nach § 7g Abs. 5 EStG (für Anschaffungen ab 2024 bis zu 40 %) auf die geminderte Bemessungsgrundlage. <em>(Satz am aktuellen Stand prüfen.)</em></p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="pts">12 Punkte</span><span class="tag">§ 6b EStG – Rücklage</span>
+    <h3>Kurzklausur 3 – Übertragung stiller Reserven</h3>
+    <p>C veräußert ein seit 10 Jahren zum Betriebsvermögen gehörendes unbebautes Grundstück. Buchwert <b>100.000 €</b>, Veräußerungspreis <b>300.000 €</b>. Eine Reinvestition in ein anderes Grundstück ist geplant.</p>
+    <p class="frage">Wie kann C den Veräußerungsgewinn behandeln?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p>Veräußerungsgewinn = 300.000 − 100.000 = <b>200.000 €</b> (aufgedeckte stille Reserven).</p>
+      <p>Da das Grundstück länger als 6 Jahre zum Betriebsvermögen gehörte (§ 6b Abs. 4 EStG), kann C den Gewinn nach <b>§ 6b EStG</b> auf ein Reinvestitionsgut (Grund und Boden/Gebäude) übertragen oder eine <b>§ 6b-Rücklage</b> von 200.000 € bilden.</p>
+      <p>Reinvestitionsfrist 4 Jahre (Gebäude mit Baubeginn 6 Jahre). Erfolgt keine Reinvestition, ist die Rücklage gewinnerhöhend aufzulösen, zzgl. <b>Gewinnzuschlag 6 % pro Jahr</b> (§ 6b Abs. 7 EStG).</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="pts">10 Punkte</span><span class="tag">§ 249 HGB / § 6 EStG</span>
+    <h3>Kurzklausur 4 – Rückstellung & Abzinsung</h3>
+    <p>Zum 31.12.01 droht der D-KG aus einem Rechtsstreit eine Zahlung von voraussichtlich <b>30.000 €</b>. Mit der Inanspruchnahme ist erst in <b>4 Jahren</b> zu rechnen.</p>
+    <p class="frage">Wie ist die Verpflichtung in der Steuerbilanz anzusetzen?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p>Pflicht zur <b>Rückstellung für ungewisse Verbindlichkeiten</b> (§ 249 Abs. 1 HGB; über § 5 Abs. 1 EStG auch steuerlich).</p>
+      <p>Steuerlich ist bei Laufzeit ≥ 12 Monaten <b>abzuzinsen</b> mit 5,5 % (§ 6 Abs. 1 Nr. 3a Buchst. e EStG):</p>
+      <p>Barwert = 30.000 € ÷ 1,055⁴ ≈ 30.000 € × 0,8072 ≈ <b>24.216 €</b>.</p>
+      <p>Künftige Preis-/Kostensteigerungen bleiben unberücksichtigt. (Handelsrechtlich Abzinsung mit dem durchschnittlichen Marktzins, § 253 Abs. 2 HGB.)</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="pts">8 Punkte</span><span class="tag">H 6.4 EStH – Abbruchkosten</span>
+    <h3>Kurzklausur 5 – Abbruch mit Abbruchabsicht</h3>
+    <p>E erwirbt ein bebautes Grundstück. Bereits beim Kauf steht fest, dass das (technisch noch nutzbare) Gebäude abgerissen wird, um einen Neubau zu errichten. Kurz nach Erwerb erfolgt der Abbruch.</p>
+    <p class="frage">Wie sind Restbuchwert des Gebäudes und Abbruchkosten zu behandeln?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p>Erwerb in <b>Abbruchabsicht</b>: Der (anteilige) Restwert des abgebrochenen Gebäudes und die <b>Abbruchkosten</b> sind <b>kein sofortiger Aufwand</b>.</p>
+      <p>Sie gehören zu den <b>Herstellungskosten des neuen Wirtschaftsguts</b> bzw. – wenn der Abbruch dem Grund und Boden dient – zu dessen Anschaffungskosten (vgl. H 6.4 EStH, BFH-Rechtsprechung).</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="pts">8 Punkte</span><span class="tag">§ 7b EStG – Sonder-AfA</span>
+    <h3>Kurzklausur 6 – Sonderabschreibung Mietwohnungsneubau</h3>
+    <p>F errichtet eine neue, vermietete Wohnung; die Voraussetzungen des § 7b EStG (Bauantrag im Förderzeitraum, Baukosten- und Flächengrenzen) sind erfüllt.</p>
+    <p class="frage">Welche Abschreibung kann F in den ersten Jahren geltend machen?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p>Neben der <b>linearen AfA</b> nach § 7 Abs. 4 EStG (i. d. R. 3 %) kann F nach <b>§ 7b EStG</b> in den ersten 4 Jahren eine <b>Sonderabschreibung von bis zu 5 % p. a.</b> der förderfähigen Bemessungsgrundlage abziehen.</p>
+      <p>Zu beachten sind die <b>Baukostenobergrenze</b> und die gedeckelte <b>maximale Bemessungsgrundlage</b> pro m². <em>(Aktuelle Grenzen und Förderzeitraum prüfen – § 7b wurde mehrfach angepasst.)</em></p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="pts">10 Punkte</span><span class="tag">§ 6 Abs. 1 Nr. 2 EStG – Forderung</span>
+    <h3>Kurzklausur 7 – Zweifelhafte Forderung</h3>
+    <p>Die H-GmbH hat eine Forderung von <b>11.900 €</b> (10.000 € netto + 1.900 € USt). Der Kunde ist in Zahlungsschwierigkeiten; mit einem Ausfall von voraussichtlich <b>60 %</b> ist zu rechnen.</p>
+    <p class="frage">Wie ist die Forderung zum 31.12. zu bewerten? Was gilt für die Umsatzsteuer?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p>Zweifelhafte Forderung → <b>Einzelwertberichtigung</b> auf den voraussichtlich realisierbaren Wert (Teilwert, § 6 Abs. 1 Nr. 2 S. 2 EStG). Bewertet wird der <b>Nettobetrag</b>: 60 % × 10.000 € = <b>6.000 € Wertberichtigung</b>, Forderung netto noch 4.000 €.</p>
+      <p>Die <b>USt-Korrektur</b> nach § 17 UStG erfolgt erst, wenn die Forderung <b>endgültig uneinbringlich</b> ist – jetzt also noch nicht.</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="pts">8 Punkte</span><span class="tag">§ 6 Abs. 2 / 2a EStG – GWG</span>
+    <h3>Kurzklausur 8 – Geringwertige Wirtschaftsgüter</h3>
+    <p>Anschaffung in 01: ein Bürostuhl für <b>600 €</b> netto und ein Schreibtisch für <b>950 €</b> netto (jeweils selbständig nutzbar).</p>
+    <p class="frage">Welche Abschreibungsmöglichkeiten bestehen?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p><b>Bürostuhl (600 €):</b> bis 800 € netto <b>Sofortabzug als GWG</b> möglich (§ 6 Abs. 2 EStG).</p>
+      <p><b>Schreibtisch (950 €):</b> über 800 € → entweder normale AfA über die Nutzungsdauer oder Aufnahme in einen <b>Sammelposten</b> (250–1.000 €, § 6 Abs. 2a EStG), der über <b>5 Jahre</b> gleichmäßig aufgelöst wird. Das GWG-/Sammelposten-Wahlrecht ist einheitlich für das Wirtschaftsjahr auszuüben.</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="pts">8 Punkte</span><span class="tag">§ 5 Abs. 5 EStG – RAP</span>
+    <h3>Kurzklausur 9 – Damnum / Disagio</h3>
+    <p>Die I-KG nimmt ein Darlehen über <b>100.000 €</b> auf; ausgezahlt werden <b>95.000 €</b> (Damnum 5.000 €). Laufzeit 5 Jahre.</p>
+    <p class="frage">Wie ist das Damnum steuerlich zu behandeln?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p>Das Damnum ist Entgelt für die Kapitalüberlassung und steuerlich als <b>aktiver Rechnungsabgrenzungsposten</b> anzusetzen (§ 5 Abs. 5 S. 1 Nr. 1 EStG).</p>
+      <p>Verteilung über die Laufzeit: 5.000 € ÷ 5 = <b>1.000 € Aufwand pro Jahr</b>. (Handelsrechtlich besteht nach § 250 Abs. 3 HGB ein Wahlrecht zur Aktivierung.)</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="pts">8 Punkte</span><span class="tag">§ 5 Abs. 4a EStG – Drohverlust</span>
+    <h3>Kurzklausur 10 – Drohverlustrückstellung</h3>
+    <p>Aus einem noch nicht erfüllten (schwebenden) Liefervertrag droht der J-GmbH ein Verlust von <b>20.000 €</b>.</p>
+    <p class="frage">Wie ist in Handels- und Steuerbilanz zu verfahren?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p><b>Handelsbilanz:</b> Pflicht zur <b>Rückstellung für drohende Verluste</b> aus schwebenden Geschäften (§ 249 Abs. 1 S. 1 HGB) → 20.000 €.</p>
+      <p><b>Steuerbilanz:</b> <b>Ansatzverbot</b> (§ 5 Abs. 4a EStG) – die Drohverlustrückstellung darf steuerlich <b>nicht</b> gebildet werden. Klassischer Fall der durchbrochenen Maßgeblichkeit.</p>
+    </div></details>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2><span>🎯</span>Große Simulation – Bilanzfall</h2>
+  <p class="lead">Ein zusammenhängender Fall mit mehreren Teilaufgaben – wie ein Klausurabschnitt. Timer auf 60–90 Min stellen, alles auf Papier lösen, dann je Teil die Lösung prüfen.</p>
+
+  <div class="klausur">
+    <span class="tag">Einzelunternehmen · Gewinnermittlung § 5 EStG</span>
+    <h3>Sachverhalt</h3>
+    <p>Einzelunternehmer G ermittelt seinen Gewinn durch Betriebsvermögensvergleich. Zum 31.12.01 sind folgende Sachverhalte zu würdigen:</p>
+    <p><b>(1)</b> Eine Maschine (Buchwert 60.000 €) ist wegen eines Defekts dauerhaft nur noch 35.000 € wert.<br>
+    <b>(2)</b> G plant für 02 die Anschaffung eines Transporters (voraussichtl. AK 40.000 €) und möchte dies in 01 steuerlich vorziehen.<br>
+    <b>(3)</b> G verkauft ein seit 8 Jahren betrieblich genutztes Grundstück (Buchwert 80.000 €) für 220.000 €; Reinvestition geplant.<br>
+    <b>(4)</b> Aus einer Garantiezusage ist mit Inanspruchnahme von 12.000 € in 3 Jahren zu rechnen.</p>
+    <p class="frage">Beurteile jeden Sachverhalt: richtiger Bilanzansatz bzw. Gewinnauswirkung zum 31.12.01.</p>
+
+    <details><summary>Lösung Teil (1) – Maschine</summary><div class="loesung">
+      <p>Dauernde Wertminderung → Teilwertabschreibung (Wahlrecht, § 6 Abs. 1 Nr. 1 S. 2 EStG), handelsrechtlich Pflicht (§ 253 Abs. 3 S. 5 HGB). Ansatz <b>35.000 €</b>; <b>Aufwand 25.000 €</b> mindert den Gewinn 01.</p>
+    </div></details>
+    <details><summary>Lösung Teil (2) – IAB Transporter</summary><div class="loesung">
+      <p>IAB 50 % von 40.000 € = <b>20.000 €</b>, außerbilanziell gewinnmindernd in 01 (§ 7g Abs. 1 EStG). Voraussetzung: Gewinngrenze 200.000 € eingehalten.</p>
+    </div></details>
+    <details><summary>Lösung Teil (3) – Grundstücksverkauf</summary><div class="loesung">
+      <p>Veräußerungsgewinn = 220.000 − 80.000 = <b>140.000 €</b>. Wegen &gt; 6 Jahre BV-Zugehörigkeit nach § 6b EStG übertragbar oder <b>§ 6b-Rücklage 140.000 €</b> → keine sofortige Gewinnauswirkung, wenn fristgerecht reinvestiert wird.</p>
+    </div></details>
+    <details><summary>Lösung Teil (4) – Garantierückstellung</summary><div class="loesung">
+      <p>Rückstellung für ungewisse Verbindlichkeiten (§ 249 HGB). Steuerlich Abzinsung 5,5 % über 3 Jahre (§ 6 Abs. 1 Nr. 3a EStG): 12.000 ÷ 1,055³ ≈ 12.000 × 0,8516 ≈ <b>10.219 €</b>. Aufwand 01 in dieser Höhe.</p>
+    </div></details>
+    <details><summary>Gesamt-Gewinnauswirkung 01</summary><div class="loesung">
+      <p>Gewinnmindernd: Teilwert-AfA 25.000 €, IAB 20.000 € (außerbilanziell), Rückstellung ~10.219 €. Der Grundstücksgewinn bleibt bei § 6b-Rücklage <b>neutral</b>. Summe der Minderungen 01 ≈ <b>55.219 €</b> (zzgl. später wirksamer Effekte aus IAB-Auflösung und Rücklage in Folgejahren).</p>
+    </div></details>
+  </div>
+</div></section>
+
+<footer><div class="wrap">Üben, vergleichen, besser werden. Du schaffst das! 💪</div></footer>
+
+<script>
+// Timer
+let total=90*60, left=total, tick=null;
+function fmt(s){const m=Math.floor(s/60),x=s%60;return (m<10?"0":"")+m+":"+(x<10?"0":"")+x;}
+function paint(){document.getElementById("clock").textContent=fmt(left);}
+function startTimer(){ if(tick) return; if(left<=0){resetTimer();} tick=setInterval(()=>{ if(left<=0){clearInterval(tick);tick=null;document.getElementById("clock").textContent="Zeit um!";return;} left--; paint(); },1000); }
+function pauseTimer(){ if(tick){clearInterval(tick);tick=null;} }
+function resetTimer(){ pauseTimer(); total=parseInt(document.getElementById("mins").value)*60; left=total; paint(); }
+document.getElementById("mins").addEventListener("change",resetTimer);
+
+// Alle Lösungen
+function toggleAll(open){ document.querySelectorAll("details").forEach(d=>d.open=open); }
+
+// Spruch
+const SPRUECHE=["Erst selbst lösen, dann vergleichen.","Klausurtechnik schlägt Auswendiglernen.","Erst die Arbeit, dann das Meer. 🌊","Jeder gelöste Fall macht dich sicherer.","Du hast schon so viel geschafft.","Zukünftige Steuerberaterin im Aufbau. 💪"];
+const sp=document.getElementById("spruch");
+let si=Math.floor(Date.now()/86400000)%SPRUECHE.length;
+function spShow(){ sp.innerHTML="„"+SPRUECHE[si]+"“ <button onclick='spNext()'>↻</button>"; }
+function spNext(){ si=(si+1)%SPRUECHE.length; spShow(); }
+spShow(); paint();
+</script>
+</body>
+</html>
