@@ -77,6 +77,8 @@
     .row .addbtn{grid-column:1 / -1;}
     .totals{grid-template-columns:1fr;}
   }
+.burger{display:none;background:none;border:none;font-size:1.7rem;line-height:1;cursor:pointer;color:#3d2a52;padding:2px 8px;}
+@media(max-width:760px){nav .wrap,.subnav{justify-content:flex-start!important;}.burger{display:block;}nav .wrap>a,.subnav>a{display:none;width:100%;padding:9px 2px;}nav .wrap.open>a,.subnav.open>a{display:block;}}
 </style>
 </head>
 <body>
@@ -88,12 +90,14 @@
 </header>
 
 <div class="spruch" id="spruch"></div>
-<div class="subnav">
+<div class="subnav"><button class="burger" aria-label="Menü" onclick="this.closest('.subnav').classList.toggle('open')">☰</button>
   <a href="index.html">Start</a>
   <a href="steuerberater.html">Steuerberater</a>
   <a href="klausuren.html">Klausuren</a>
   <a href="pruefungssimulation.html">Simulation</a>
+  <a href="kurs.html">Kurs</a>
   <a href="lernmaterial.html">Lernmaterial</a>
+  <a href="kalender.html">Kalender</a>
   <a href="Partnerin-Tagestracker.html">Mein Tag</a>
 </div>
 

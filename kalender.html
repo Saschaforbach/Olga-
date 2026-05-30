@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalender – Gemeinsame Termine</title>
+<style>
+  :root{--purple:#7a4e9e;--purple-d:#3d2a52;--purple-l:#f3ecf7;--teal:#1f9f8a;--ink:#1d2421;--grey:#5f6b66;--line:#e6e2ec;--bg:#f6f4f9;--card:#fff;--red:#d05050;}
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:18px;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 18px;}
+  header.hero{background:linear-gradient(135deg,var(--purple-d),var(--purple) 80%,#a374c6);color:#fff;padding:46px 0 36px;text-align:center;}
+  header.hero h1{margin:0 0 8px;font-size:clamp(2rem,5vw,2.9rem);font-weight:800;}
+  header.hero p{margin:0;opacity:.95;font-weight:300;font-size:1.1rem;}
+  .spruch{background:#fff5e6;border-bottom:1px solid #f0e0c0;color:#7a5a14;text-align:center;padding:13px 20px;font-size:1.08rem;font-style:italic;font-weight:500;}
+  .spruch button{margin-left:10px;border:none;background:#f0dcae;color:#7a5a14;border-radius:999px;width:28px;height:28px;cursor:pointer;}
+  nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;flex-wrap:wrap;gap:6px 16px;padding:13px 20px;justify-content:center;}
+  nav a{color:var(--purple-d);text-decoration:none;font-weight:600;padding:4px 2px;border-bottom:3px solid transparent;}
+  nav a:hover,nav a.active{border-color:var(--purple);}
+  .burger{display:none;background:none;border:none;font-size:1.7rem;line-height:1;cursor:pointer;color:#3d2a52;padding:2px 8px;}
+  @media(max-width:760px){nav .wrap{justify-content:flex-start!important;}.burger{display:block;}nav .wrap>a{display:none;width:100%;padding:9px 2px;}nav .wrap.open>a{display:block;}}
+  section{padding:34px 0;}
+  /* Calendar */
+  .calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:10px;}
+  .calhead h2{margin:0;font-size:1.6rem;color:var(--purple-d);font-weight:800;}
+  .calhead button{border:1.5px solid var(--purple);background:#fff;color:var(--purple);border-radius:9px;width:42px;height:42px;font-size:1.3rem;cursor:pointer;font-weight:700;}
+  .calhead .today{width:auto;padding:0 14px;font-size:.95rem;}
+  .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+  .dow{text-align:center;font-weight:700;color:var(--grey);font-size:.85rem;padding:6px 0;}
+  .day{background:var(--card);border:1px solid var(--line);border-radius:10px;min-height:74px;padding:6px 8px;cursor:pointer;position:relative;transition:.12s;}
+  .day:hover{border-color:var(--purple);background:var(--purple-l);}
+  .day.empty{background:transparent;border:none;cursor:default;}
+  .day .n{font-weight:700;font-size:.95rem;}
+  .day.today{outline:2px solid var(--teal);}
+  .day.sel{background:var(--purple);}
+  .day.sel .n{color:#fff;}
+  .day .dot{position:absolute;bottom:8px;left:8px;right:8px;display:flex;gap:3px;flex-wrap:wrap;}
+  .day .dot i{width:7px;height:7px;border-radius:50%;background:var(--purple);display:block;}
+  .day.sel .dot i{background:#fff;}
+  .day .ev1{font-size:.72rem;color:var(--purple-d);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .day.sel .ev1{color:#fff;}
+  /* Panel */
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-top:22px;box-shadow:0 6px 20px rgba(60,42,82,.05);}
+  .panel h3{margin:0 0 14px;color:var(--purple-d);font-size:1.3rem;}
+  .addrow{display:flex;gap:10px;flex-wrap:wrap;}
+  .addrow input{flex:1;min-width:180px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:1rem;font-family:inherit;}
+  .addrow input:focus{outline:none;border-color:var(--purple);}
+  .addrow input.time{flex:0 0 110px;min-width:90px;}
+  button.primary{background:var(--purple);color:#fff;border:none;border-radius:10px;padding:12px 18px;font-weight:700;cursor:pointer;font-size:1rem;}
+  ul.evs{list-style:none;padding:0;margin:16px 0 0;}
+  ul.evs li{display:flex;align-items:center;gap:12px;padding:11px 4px;border-top:1px solid var(--line);}
+  ul.evs li .t{font-weight:700;color:var(--purple);min-width:54px;}
+  ul.evs li .x{flex:1;}
+  ul.evs li button{background:none;border:none;color:var(--red);font-size:1.3rem;cursor:pointer;}
+  .hint{color:var(--grey);font-style:italic;}
+  footer{padding:30px 0 60px;text-align:center;color:var(--grey);font-size:.95rem;}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap"><h1>Unser Kalender</h1><p>Gemeinsame Termine eintragen – einfach auf einen Tag tippen</p></div></header>
+<div class="spruch" id="spruch"></div>
+
+<nav><div class="wrap"><button class="burger" aria-label="Menü" onclick="this.closest('.wrap').classList.toggle('open')">☰</button>
+  <a href="index.html">Start</a>
+  <a href="steuerberater.html">Steuerberater</a>
+  <a href="klausuren.html">Klausuren</a>
+  <a href="pruefungssimulation.html">Simulation</a>
+  <a href="kurs.html">Kurs</a>
+  <a href="lernmaterial.html">Lernmaterial</a>
+  <a href="kalender.html" class="active">Kalender</a>
+  <a href="Partnerin-Tagestracker.html">Mein Tag</a>
+</div></nav>
+
+<section><div class="wrap">
+  <div class="calhead">
+    <button onclick="move(-1)" aria-label="Vorheriger Monat">‹</button>
+    <h2 id="monthLabel"></h2>
+    <div style="display:flex;gap:8px;">
+      <button class="today" onclick="goToday()">Heute</button>
+      <button onclick="move(1)" aria-label="Nächster Monat">›</button>
+    </div>
+  </div>
+  <div class="grid" id="dows"></div>
+  <div class="grid" id="cal" style="margin-top:6px;"></div>
+
+  <div class="panel" id="panel">
+    <h3 id="panelDate">Tag auswählen</h3>
+    <div class="addrow">
+      <input class="time" id="evTime" type="time" aria-label="Uhrzeit">
+      <input id="evText" type="text" placeholder="Was habt ihr vor? (z. B. Lerngruppe, Arzt, Strandtag)" onkeydown="if(event.key==='Enter')addEv()">
+      <button class="primary" onclick="addEv()">+ Eintragen</button>
+    </div>
+    <ul class="evs" id="evList"></ul>
+    <p class="hint" id="noSel">Tippe oben auf einen Tag, um Termine zu sehen oder einzutragen.</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap">Wird auf diesem Gerät gespeichert · Unser gemeinsamer Kalender</div></footer>
+
+<script>
+const KEY="kalender_v1";
+const MONTHS=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+const DOW=["Mo","Di","Mi","Do","Fr","Sa","So"];
+let data=load(); let view=new Date(); view.setDate(1); let sel=null;
+
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s)return s;}catch(e){}return {};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){}}
+function key(y,m,d){return y+"-"+String(m+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");}
+function esc(s){return (s||"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+
+// Wochentage-Kopf
+document.getElementById("dows").innerHTML=DOW.map(d=>`<div class="dow">${d}</div>`).join("");
+
+function render(){
+  const y=view.getFullYear(), m=view.getMonth();
+  document.getElementById("monthLabel").textContent=MONTHS[m]+" "+y;
+  const first=new Date(y,m,1); let start=(first.getDay()+6)%7; // Mo=0
+  const days=new Date(y,m+1,0).getDate();
+  const today=new Date(); const tk=key(today.getFullYear(),today.getMonth(),today.getDate());
+  let cells="";
+  for(let i=0;i<start;i++) cells+=`<div class="day empty"></div>`;
+  for(let d=1;d<=days;d++){
+    const k=key(y,m,d); const evs=data[k]||[];
+    const cls=["day"]; if(k===tk)cls.push("today"); if(k===sel)cls.push("sel");
+    let badge=""; if(evs.length){ const first=esc(evs[0].text); badge=`<div class="ev1">${first}</div>`; if(evs.length>1) badge+=`<div class="dot">`+evs.slice(0,4).map(()=>`<i></i>`).join("")+`</div>`; }
+    cells+=`<div class="${cls.join(' ')}" onclick="pick('${k}')"><div class="n">${d}</div>${badge}</div>`;
+  }
+  document.getElementById("cal").innerHTML=cells;
+  renderPanel();
+}
+function pick(k){ sel=k; render(); }
+function move(n){ view.setMonth(view.getMonth()+n); render(); }
+function goToday(){ const t=new Date(); view=new Date(t.getFullYear(),t.getMonth(),1); sel=key(t.getFullYear(),t.getMonth(),t.getDate()); render(); }
+
+function renderPanel(){
+  const list=document.getElementById("evList"); const no=document.getElementById("noSel");
+  if(!sel){ list.innerHTML=""; no.style.display="block"; document.getElementById("panelDate").textContent="Tag auswählen"; return; }
+  no.style.display="none";
+  const [y,m,d]=sel.split("-");
+  document.getElementById("panelDate").textContent=`${parseInt(d)}. ${MONTHS[parseInt(m)-1]} ${y}`;
+  const evs=(data[sel]||[]).slice().sort((a,b)=>(a.time||"").localeCompare(b.time||""));
+  list.innerHTML = evs.length? evs.map((e,i)=>`<li><span class="t">${e.time||"–"}</span><span class="x">${esc(e.text)}</span><button title="Löschen" onclick="delEv(${i})">×</button></li>`).join("")
+    : `<li style="border:none;color:var(--grey);font-style:italic;">Noch keine Termine an diesem Tag.</li>`;
+}
+function addEv(){
+  if(!sel){ alert("Bitte zuerst oben einen Tag antippen."); return; }
+  const text=document.getElementById("evText").value.trim(); const time=document.getElementById("evTime").value;
+  if(!text) return;
+  (data[sel]=data[sel]||[]).push({time,text}); save();
+  document.getElementById("evText").value=""; document.getElementById("evTime").value="";
+  render();
+}
+function delEv(i){
+  const evs=(data[sel]||[]).slice().sort((a,b)=>(a.time||"").localeCompare(b.time||""));
+  const target=evs[i];
+  const idx=data[sel].indexOf(target);
+  if(idx>-1){ data[sel].splice(idx,1); if(!data[sel].length) delete data[sel]; save(); render(); }
+}
+
+// Spruch
+const SP=["Plant gemeinsam – das hält zusammen.","Erst die Arbeit, dann das Meer. 🌊","Pausen gehören in den Kalender.","Ein Kapitel nach dem anderen.","Zukünftige Steuerberaterin im Aufbau. 💪"];
+const sp=document.getElementById("spruch");let si=Math.floor(Date.now()/86400000)%SP.length;
+function spShow(){sp.innerHTML="„"+SP[si]+"“ <button onclick='spNext()'>↻</button>";}function spNext(){si=(si+1)%SP.length;spShow();}
+spShow(); render();
+</script>
+</body>
+</html>

@@ -51,6 +51,8 @@
   .note{background:#fff5e6;border-radius:12px;padding:16px 20px;color:#7a5a14;font-size:1.02rem;margin-top:18px;}
   footer{padding:36px 0 60px;text-align:center;color:var(--grey);font-size:.95rem;}
   @media(max-width:640px){.grid,.facts{grid-template-columns:1fr;}}
+.burger{display:none;background:none;border:none;font-size:1.7rem;line-height:1;cursor:pointer;color:#3d2a52;padding:2px 8px;}
+@media(max-width:760px){nav .wrap,.subnav{justify-content:flex-start!important;}.burger{display:block;}nav .wrap>a,.subnav>a{display:none;width:100%;padding:9px 2px;}nav .wrap.open>a,.subnav.open>a{display:block;}}
 </style>
 </head>
 <body>
@@ -63,12 +65,14 @@
 
 <div class="spruch" id="spruch"></div>
 
-<nav><div class="wrap">
+<nav><div class="wrap"><button class="burger" aria-label="Menü" onclick="this.closest('.wrap').classList.toggle('open')">☰</button>
   <a href="index.html">Start</a>
   <a href="steuerberater.html" class="active">Steuerberater</a>
   <a href="klausuren.html">Klausuren</a>
   <a href="pruefungssimulation.html">Simulation</a>
+  <a href="kurs.html">Kurs</a>
   <a href="lernmaterial.html">Lernmaterial</a>
+  <a href="kalender.html">Kalender</a>
   <a href="Partnerin-Tagestracker.html">Mein Tag</a>
 </div></nav>
 
