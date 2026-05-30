@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steuerberaterprüfung – Beste Ressourcen</title>
+<style>
+  :root{
+    --purple:#7a4e9e; --purple-d:#3d2a52; --purple-l:#f3ecf7;
+    --gold:#c79a3a; --ink:#1d2421; --grey:#5f6b66; --line:#e3e8e5; --bg:#f6f4f9; --card:#fff;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:18px;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px;}
+  header.hero{background:linear-gradient(135deg,var(--purple-d) 0%,var(--purple) 70%,#9a6bbf 120%);color:#fff;padding:60px 0 48px;text-align:center;}
+  header.hero h1{margin:0 0 10px;font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:800;}
+  header.hero p{margin:0;opacity:.95;font-size:1.2rem;font-weight:300;}
+  /* Spruch banner */
+  .spruch{background:#fff5e6;border-bottom:1px solid #f0e0c0;color:#7a5a14;text-align:center;
+    padding:16px 20px;font-size:1.18rem;font-style:italic;font-weight:500;}
+  .spruch button{margin-left:12px;border:none;background:#f0dcae;color:#7a5a14;border-radius:999px;
+    width:30px;height:30px;cursor:pointer;font-size:1rem;vertical-align:middle;}
+  nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;flex-wrap:wrap;gap:6px 20px;padding:13px 20px;justify-content:center;}
+  nav a{color:var(--purple-d);text-decoration:none;font-weight:600;padding:4px 2px;border-bottom:3px solid transparent;}
+  nav a:hover,nav a.active{border-color:var(--purple);}
+  section{padding:46px 0;border-bottom:1px solid var(--line);}
+  h2{font-size:clamp(1.7rem,4vw,2.4rem);color:var(--purple);margin:0 0 6px;font-weight:800;display:flex;gap:10px;align-items:center;}
+  .lead{color:var(--grey);font-size:1.15rem;margin:0 0 24px;}
+  h3{font-size:1.35rem;color:var(--purple-d);margin:26px 0 10px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 6px 20px rgba(60,42,82,.05);}
+  .card h4{margin:0 0 6px;font-size:1.2rem;color:var(--purple-d);}
+  .card p{margin:0 0 12px;font-size:1rem;color:var(--ink);}
+  .card a{display:inline-block;color:#fff;background:var(--purple);text-decoration:none;font-weight:700;
+    padding:9px 16px;border-radius:9px;font-size:.95rem;}
+  .card a:hover{filter:brightness(1.08);}
+  .tag{display:inline-block;background:var(--purple-l);color:var(--purple-d);border-radius:999px;padding:3px 12px;font-size:.82rem;font-weight:700;margin-bottom:8px;}
+  ul.clean{list-style:none;padding:0;margin:0;display:grid;gap:12px;}
+  ul.clean li{background:#fff;border-left:5px solid var(--purple);border-radius:10px;padding:14px 18px;box-shadow:0 4px 14px rgba(60,42,82,.04);}
+  ul.clean li b{color:var(--purple-d);}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .fact{background:var(--purple-l);border-radius:14px;padding:20px;text-align:center;}
+  .fact .big{font-size:1.9rem;font-weight:800;color:var(--purple-d);}
+  .fact .lbl{font-size:.95rem;color:var(--grey);}
+  .steps{counter-reset:s;display:grid;gap:14px;}
+  .step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .step::before{counter-increment:s;content:counter(s);background:var(--purple);color:#fff;font-weight:800;
+    width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 38px;}
+  .note{background:#fff5e6;border-radius:12px;padding:16px 20px;color:#7a5a14;font-size:1.02rem;margin-top:18px;}
+  footer{padding:36px 0 60px;text-align:center;color:var(--grey);font-size:.95rem;}
+  @media(max-width:640px){.grid,.facts{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1>Steuerberaterprüfung</h1>
+    <p>Die wichtigsten Infos & besten Ressourcen für deine Vorbereitung</p>
+  </div>
+</header>
+
+<div class="spruch" id="spruch"></div>
+
+<nav><div class="wrap">
+  <a href="index.html">Start</a>
+  <a href="steuerberater.html" class="active">Steuerberater</a>
+  <a href="klausuren.html">Klausuren</a>
+  <a href="lernmaterial.html">Lernmaterial</a>
+  <a href="Partnerin-Tagestracker.html">Mein Tag</a>
+</div></nav>
+
+<!-- FAKTEN -->
+<section><div class="wrap">
+  <h2><span>📌</span>Die Prüfung 2026 auf einen Blick</h2>
+  <p class="lead">Drei schriftliche Klausuren à 6 Stunden im Gutachtenstil, danach die mündliche Prüfung.</p>
+  <div class="facts">
+    <div class="fact"><div class="big">6.–8. Okt</div><div class="lbl">Schriftliche Prüfung 2026</div></div>
+    <div class="fact"><div class="big">Jan–März</div><div class="lbl">Mündliche Prüfung (Folgejahr)</div></div>
+    <div class="fact"><div class="big">30. April</div><div class="lbl">Frist Zulassungsantrag</div></div>
+  </div>
+  <div class="note">Neu ab Examen 2026: Viele Steuerberaterkammern erlauben per Wahlrecht zusätzlich die <b>digitale Bearbeitung</b> der Klausuren statt nur handschriftlich. Den genauen Stand bitte bei der zuständigen Kammer prüfen.</div>
+</div></section>
+
+<!-- KLAUSUREN -->
+<section><div class="wrap">
+  <h2><span>📝</span>Die drei Klausuren</h2>
+  <ul class="clean">
+    <li><b>Klausur 1 – Verfahrensrecht & andere Rechtsgebiete:</b> i. d. R. Abgabenordnung/Verfahrensrecht, Umsatzsteuer sowie Erbschaft- und Schenkungsteuer / Bewertungsrecht.</li>
+    <li><b>Klausur 2 – Ertragsteuerrecht:</b> i. d. R. Einkommensteuer, Körperschaftsteuer und Gewerbesteuer.</li>
+    <li><b>Klausur 3 – Buchführung & Bilanzwesen:</b> Bilanzsteuerrecht / Handels- und Steuerbilanz. (Genaue Schwerpunkte variieren – bei der Kammer bzw. im Lehrgang abklären.)</li>
+  </ul>
+</div></section>
+
+<!-- WARUM -->
+<section><div class="wrap">
+  <h2><span>⚠️</span>Worauf es wirklich ankommt</h2>
+  <p class="lead">Jedes Jahr fallen rund <b>50 %</b> der Teilnehmer durch – meist nicht wegen fehlendem Wissen, sondern wegen fehlender <b>Klausurtechnik</b>, Struktur und zu weniger geübter Klausuren.</p>
+  <ul class="clean">
+    <li><b>Klausuren schreiben, schreiben, schreiben:</b> Empfohlen werden <b>25–30 vollständige 6-Stunden-Klausuren</b> – geschrieben, korrigiert und gründlich nachgearbeitet.</li>
+    <li><b>Klausurtechnik = Zeitmanagement + Formulierung:</b> Die optimale, knappe Lösungsformulierung im Gutachtenstil unter Zeitdruck ist die eigentliche Kunst.</li>
+    <li><b>Nacharbeiten zählt mehr als neu lesen:</b> aus jeder Übungsklausur die eigenen Fehler systematisch aufarbeiten.</li>
+  </ul>
+</div></section>
+
+<!-- LERNPHASEN -->
+<section><div class="wrap">
+  <h2><span>🗺️</span>Vorbereitung in 3 Phasen</h2>
+  <p class="lead">Insgesamt rechnet man im Schnitt mit rund <b>1¼ Jahren</b> konsequenter Vorbereitung.</p>
+  <div class="steps">
+    <div class="step"><div><b>Grundlagen aufbauen.</b> Ein sicheres Fundament über alle Rechtsgebiete und Begrifflichkeiten schaffen.</div></div>
+    <div class="step"><div><b>Wissen anwenden.</b> Theorie in Übungen und ersten Klausuren direkt umsetzen.</div></div>
+    <div class="step"><div><b>Klausurtechnik & Vertiefung.</b> Routine entwickeln, Tempo aufbauen, Wissen festigen – die längste Phase.</div></div>
+  </div>
+  <div class="note">Lernplan-Tipp: Plane <b>von hinten nach vorne</b> – vom Prüfungstermin rückwärts auf Quartals- und Monatsebene Lernziele setzen.</div>
+</div></section>
+
+<!-- ANBIETER -->
+<section><div class="wrap">
+  <h2><span>🎓</span>Lehrgänge & Klausurenkurse</h2>
+  <p class="lead">Etablierte Anbieter (Auswahl) mit Kern-, Klausuren- und Intensivkursen. Vergleiche Inhalte, Termine und Preise selbst – das Passende hängt von deinem Lernstil ab.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Lehrgänge & Klausuren</span><h4>DR. BANNAS</h4><p>Seit 30 Jahren Vorbereitung an vielen Standorten und im Fernkurs; Kern- plus Klausurenkurs als bewährte Kombination.</p><a href="https://www.bannas.com/lehrgaenge/steuerberater" target="_blank" rel="noopener">Zur Seite →</a></div>
+    <div class="card"><span class="tag">Mit Wiederholungsgarantie</span><h4>Lehrgangswerk Haas</h4><p>Start-, Haupt- und Intensivkurse Schritt für Schritt bis zur mündlichen Prüfung; kostenloser Wiederholungskurs bei Nichtbestehen.</p><a href="https://www.lwhaas.de/lehrgaenge/steuerberater/" target="_blank" rel="noopener">Zur Seite →</a></div>
+    <div class="card"><span class="tag">Fokus Klausurtechnik</span><h4>KNOLL Steuerrechts-Institut</h4><p>Setzt stark auf individuelle Klausurtechnik und Routine; viele kostenlose Ratgeber zu Lernplanung & Klausurtaktik.</p><a href="https://knoll-steuer.com/lehrgaenge/steuerberaterpruefung/" target="_blank" rel="noopener">Zur Seite →</a></div>
+    <div class="card"><span class="tag">Lehrgänge</span><h4>Steuerberaterlehrgang Endriss</h4><p>Umfassende Infos zu Ablauf und Inhalten der Prüfung sowie Vorbereitungslehrgänge.</p><a href="https://www.endriss.de/berufe/steuer-berufe/steuerberater/" target="_blank" rel="noopener">Zur Seite →</a></div>
+    <div class="card"><span class="tag">Originalklausuren</span><h4>Tax Academy – Klausurenfernkurs</h4><p>Klausurenkurs mit Originalklausuren samt ausführlichen Lösungen zum Üben.</p><a href="https://steuerberater.tax-academy.de/klausurenfernkurs-steuerberater/" target="_blank" rel="noopener">Zur Seite →</a></div>
+    <div class="card"><span class="tag">Fachverlag & Blog</span><h4>NWB</h4><p>Ratgeber, Fachliteratur und der NWB Campus Blog mit Tipps zu Ablauf, Inhalten und Klausurtechnik.</p><a href="https://www.nwb.de/aus-und-weiterbildung/steuerberaterpruefung-ablauf-inhalte-und-tipps" target="_blank" rel="noopener">Zur Seite →</a></div>
+  </div>
+</div></section>
+
+<!-- BUECHER / TOOLS -->
+<section><div class="wrap">
+  <h2><span>📚</span>Bücher & Tools</h2>
+  <div class="grid">
+    <div class="card"><span class="tag">Standardwerk</span><h4>Die schriftliche Steuerberaterprüfung – Klausurtechnik & Klausurtaktik (HDS Verlag)</h4><p>Praxisbuch speziell zur Klausurtechnik und -taktik, regelmäßig in neuer Auflage.</p><a href="https://www.hds-verlag.de/steuerberaterpruefung-vorbereitung/" target="_blank" rel="noopener">Zur Seite →</a></div>
+    <div class="card"><span class="tag">Planung</span><h4>examio Examensplaner (Notion)</h4><p>Vorgefertigter Lern- und Examensplaner zum Strukturieren der Vorbereitung.</p><a href="https://one.examio.de/examensplaner" target="_blank" rel="noopener">Zur Seite →</a></div>
+    <div class="card"><span class="tag">Offiziell</span><h4>Steuerberaterkammern</h4><p>Verbindliche Termine, Zulassung und Prüfungsorganisation der jeweils zuständigen Kammer.</p><a href="https://www.stbk-niedersachsen.de/de/steuerberaterpr%C3%BCfung/" target="_blank" rel="noopener">Beispiel-Kammer →</a></div>
+    <div class="card"><span class="tag">Gratis-Tipps</span><h4>KNOLL Ratgeber & Lernstrategie</h4><p>Kostenlose Artikel zu Lernplanung, Klausurtechnik und mündlicher Prüfung.</p><a href="https://www.knoll-steuer.com/steuerberaterpruefung/erfolgreiche-vorbereitung-auf-die-steuerberaterpruefung" target="_blank" rel="noopener">Zur Seite →</a></div>
+  </div>
+  <div class="note">Hinweis: Termine, Inhalte und digitale Bearbeitung können sich ändern und je nach Bundesland/Kammer abweichen. Immer den aktuellen Stand bei der zuständigen Steuerberaterkammer prüfen.</div>
+</div></section>
+
+<!-- PRUEFUNGSGEBIETE -->
+<section><div class="wrap">
+  <h2><span>📚</span>Prüfungsgebiete (§ 37 StBerG)</h2>
+  <p class="lead">Das Steuerrecht ist der klare Schwerpunkt – besonders Ertragsteuern, Umsatzsteuer, Bilanzsteuerrecht und Abgabenordnung. Geprüft werden u. a.:</p>
+  <ul class="clean">
+    <li><b>Steuerliches Verfahrensrecht:</b> Abgabenordnung (AO) und Finanzgerichtsordnung (FGO) sowie Steuerstraf- und Ordnungswidrigkeitenrecht.</li>
+    <li><b>Steuern vom Einkommen und Ertrag:</b> Einkommen-, Körperschaft- und Gewerbesteuer.</li>
+    <li><b>Bewertungsrecht, Erbschaft-/Schenkungsteuer und Grundsteuer.</b></li>
+    <li><b>Umsatzsteuer</b> sowie Grundzüge des Zollrechts.</li>
+    <li><b>Handelsrecht</b> und Grundzüge des Bürgerlichen Rechts, des Gesellschafts-, Insolvenz- und EU-Rechts.</li>
+    <li><b>Betriebswirtschaft & Rechnungswesen, Volkswirtschaft</b> sowie das <b>Berufsrecht</b> der Steuerberater.</li>
+  </ul>
+</div></section>
+
+<!-- MUENDLICHE -->
+<section><div class="wrap">
+  <h2><span>🗣️</span>Die mündliche Prüfung</h2>
+  <p class="lead">Wer die schriftliche Prüfung besteht, kommt in die mündliche. Sie besteht aus zwei Teilen:</p>
+  <ul class="clean">
+    <li><b>Kurzvortrag:</b> Aus mehreren vorgeschlagenen Themen (meist nur Schlagworte) wählt man eines und hält nach kurzer Vorbereitung einen freien Vortrag.</li>
+    <li><b>Prüfungsdialog:</b> In <b>sechs Fragerunden</b> wird das Wissen quer durch die Prüfungsgebiete abgefragt – Schwerpunkt erneut Steuerrecht.</li>
+  </ul>
+  <div class="note">Tipp: Den Kurzvortrag laut und mit Zeitlimit üben. Aktuelle Themen/Gesetzesänderungen im Blick behalten – die kommen gern dran.</div>
+</div></section>
+
+<!-- HILFSMITTEL -->
+<section><div class="wrap">
+  <h2><span>📑</span>Zugelassene Hilfsmittel</h2>
+  <p class="lead">Welche Gesetzestexte in der Klausur erlaubt sind, regelt der jährliche <b>Hilfsmittelerlass</b> des BMF – bundeseinheitlich. Die richtige, zugelassene Textausgabe rechtzeitig besorgen und einarbeiten!</p>
+  <ul class="clean">
+    <li><b>Erlaubt:</b> Textausgaben der Gesetze (inkl. Durchführungsverordnungen), z. B. NWB „Wichtige Wirtschaftsgesetze" oder Beck „Aktuelle Wirtschaftsgesetze"; bestimmte Einzelgesetze als Textausgabe (u. a. AO, FGO, VwZG, ErbStG, BewG).</li>
+    <li><b>Erlaubt:</b> farbige Markierungen und Unterstreichungen sowie Griffregister/Fähnchen – aber nur mit Stichworten aus Gesetzesüberschriften oder Paragrafennummern.</li>
+    <li><b>Nicht erlaubt:</b> handschriftliche Notizen, Ergänzungen oder Verweise im Gesetzestext.</li>
+  </ul>
+  <div class="grid" style="margin-top:18px;">
+    <div class="card"><span class="tag">Offiziell</span><h4>Hilfsmittelerlass (Haufe-Meldung)</h4><p>Welche Hilfsmittel im jeweiligen Jahr zugelassen sind.</p><a href="https://www.haufe.de/steuern/finanzverwaltung/hilfsmittelerlass-wurde-veroeffentlicht_164_636108.html" target="_blank" rel="noopener">Mehr →</a></div>
+    <div class="card"><span class="tag">Kammer</span><h4>Hilfsmittel – Steuerberaterkammer</h4><p>Übersicht der zugelassenen Hilfsmittel bei einer Kammer.</p><a href="https://www.stbk-niedersachsen.de/de/steuerberaterpr%C3%BCfung/informationen_zur_steuerberaterpr%C3%BCfung/hilfsmittel/" target="_blank" rel="noopener">Zur Seite →</a></div>
+  </div>
+</div></section>
+
+<!-- KOSTENLOSE LERNHILFEN -->
+<section><div class="wrap">
+  <h2><span>🎧</span>Kostenlose Lernhilfen & Community</h2>
+  <p class="lead">Motivation, Erfahrungsberichte und Erklärungen – vieles davon gratis.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Podcast · gratis</span><h4>„Die Steuerberater-Prüfung"</h4><p>Tipps, Eselsbrücken, Motivation und viele Erfahrungen rund ums Examen.</p><a href="https://open.spotify.com/show/3yxC9HmE3f2XiP0xv5ZINX" target="_blank" rel="noopener">Auf Spotify →</a></div>
+    <div class="card"><span class="tag">YouTube · gratis</span><h4>KNOLL – Klausurauswertungen</h4><p>Infoveranstaltungen und Auswertungen echter Klausuren auf YouTube.</p><a href="https://www.youtube.com/playlist?list=PL77_ntLHnaazcjH0CtLEAZFcHEPtqoZ3V" target="_blank" rel="noopener">Zur Playlist →</a></div>
+    <div class="card"><span class="tag">Blog · gratis</span><h4>NWB Campus Blog</h4><p>Erfahrungsberichte von Prüflingen, Klausurtechnik und Karteikarten-Tipps.</p><a href="https://www.nwb-campus-blog.de/" target="_blank" rel="noopener">Zum Blog →</a></div>
+    <div class="card"><span class="tag">Karteikarten</span><h4>Anki & Lernkarten</h4><p>Mit Anki kann man kostenlos eigene Karteikarten erstellen (Wiederholung = Routine). Fertige Karten u. a. bei BrainYoo/WLW (kostenpflichtig).</p><a href="https://brainyoo.de/produkt-kategorie/weiterbildung/steuerberater/" target="_blank" rel="noopener">Beispiel-Karten →</a></div>
+    <div class="card"><span class="tag">Digital lernen</span><h4>tax-tech.de</h4><p>Ideen und Tools zum digitalen Lernen fürs Steuerberaterexamen.</p><a href="https://tax-tech.de/digital-lernen-steuerberaterexamen/" target="_blank" rel="noopener">Zum Artikel →</a></div>
+    <div class="card"><span class="tag">Gesetze · gratis</span><h4>Gesetze im Internet</h4><p>Alle aktuellen Gesetzestexte (AO, EStG, UStG, …) kostenlos online zum Nachschlagen.</p><a href="https://www.gesetze-im-internet.de/" target="_blank" rel="noopener">Zur Seite →</a></div>
+  </div>
+</div></section>
+
+<!-- UEBUNGSKLAUSUREN -->
+<section><div class="wrap">
+  <h2><span>🗂️</span>Echte Übungs- & Originalklausuren</h2>
+  <p class="lead">Original-Prüfungsaufgaben sind urheberrechtlich geschützt – deshalb hier die legalen Bezugsquellen statt kopierter Inhalte. Vieles ist <b>kostenlos</b>.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Offiziell · gratis</span><h4>Original-Aufgaben + Musterlösungen (BStBK)</h4><p>Die Finanzverwaltung veröffentlicht die echten Aufgabentexte (mit ~2 Jahren Karenz); die Bundessteuerberaterkammer stellt rechtsunverbindliche Lösungsvorschläge bereit.</p><a href="https://www.haufe.de/steuern/steuerwissen-tipps/bstbk-stellt-musterloesungen-fuer-pruefungsklausuren-bereit_170_628542.html" target="_blank" rel="noopener">Mehr erfahren →</a></div>
+    <div class="card"><span class="tag">Gratis-Download</span><h4>Endriss – kostenlose Übungsklausuren</h4><p>Kostenfreie Übungsklausuren zur Steuerberaterprüfung zum Herunterladen.</p><a href="https://www.endriss.de/weiterbildungskurse/formate/lehrgaenge/steuerberater/download-uebungsklausur/" target="_blank" rel="noopener">Zum Download →</a></div>
+    <div class="card"><span class="tag">Gratis-Download</span><h4>DR. BANNAS – kostenlose Klausuren</h4><p>Sammlung kostenloser Prüfungsklausuren zum Üben.</p><a href="https://www.bannas.com/lehrgaenge/steuerberater/allgemeine-informationen/steuerberater-klausuren" target="_blank" rel="noopener">Zu den Klausuren →</a></div>
+    <div class="card"><span class="tag">Musterlösungen</span><h4>KNOLL – Musterlösung & Korrekturbogen</h4><p>Lösungshinweise und Korrekturbögen zu Prüfungsklausuren.</p><a href="https://www.knoll-steuer.com/musterloesung" target="_blank" rel="noopener">Zur Seite →</a></div>
+    <div class="card"><span class="tag">Kostenpflichtig · ausführlich</span><h4>Tax Academy – Klausurenfernkurs</h4><p>Originalklausuren mit ausführlichen Lösungen und Korrektur – ideal für die intensive Übungsphase.</p><a href="https://steuerberater.tax-academy.de/klausurenfernkurs-steuerberater/" target="_blank" rel="noopener">Zum Kurs →</a></div>
+    <div class="card"><span class="tag">Kostenpflichtig</span><h4>KNOLL – Klausurenkurs</h4><p>Strukturierter Klausurenkurs mit Fokus auf Klausurtechnik und Routine.</p><a href="https://knoll-steuer.com/lehrgaenge/steuerberaterpruefung/klausurenkurs/" target="_blank" rel="noopener">Zum Kurs →</a></div>
+  </div>
+  <div class="note">Tipp: Mit den kostenlosen Original-Aufgaben + BStBK-Lösungsvorschlägen kommst du schon weit. Für gründliches Feedback (Korrektur deiner eigenen Lösung) lohnt sich später ein bezahlter Klausurenkurs.</div>
+</div></section>
+
+<footer><div class="wrap">Du schaffst das – Schritt für Schritt, § für §. 💪</div></footer>
+
+<script>
+const SPRUECHE = [
+  "Jede geübte Klausur bringt dich näher ans Ziel.",
+  "Erst die Arbeit, dann das Meer – Zypern wartet auf dich. 🌊",
+  "Du musst nicht alles heute können, nur heute ein bisschen mehr als gestern.",
+  "§ für §, Tag für Tag – du wächst an dieser Prüfung.",
+  "Pausen sind kein Faulsein, sondern Teil des Lernens.",
+  "Atme tief durch: Du hast schon so viel geschafft.",
+  "Sonne, Kaffee, ein Gesetzbuch – und du packst das.",
+  "Stress ist nur Energie, die noch keine Richtung hat – lenk sie in die nächste Aufgabe.",
+  "Ein Kapitel nach dem anderen. So besteht man Examen.",
+  "Zukünftige Steuerberaterin im Aufbau. 💪",
+  "Wer am Meer lernt, lernt mit Aussicht auf Erfolg.",
+  "Nicht perfekt, nur dran bleiben – das gewinnt am Ende."
+];
+const el=document.getElementById("spruch");
+let idx=Math.floor((new Date()).getTime()/86400000)%SPRUECHE.length;
+function show(){ el.innerHTML="„"+SPRUECHE[idx]+"“ <button title='Nächster Spruch' onclick='next()'>↻</button>"; }
+function next(){ idx=(idx+1)%SPRUECHE.length; show(); }
+show();
+</script>
+</body>
+</html>

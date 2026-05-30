@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unser Plan – gemeinsam abnehmen</title>
+<style>
+  :root{
+    --green:#1f6f54; --green-d:#14392b; --green-l:#eaf3ee;
+    --purple:#7a4e9e; --purple-d:#3d2a52; --purple-l:#f3ecf7;
+    --ink:#1d2421; --grey:#5f6b66; --line:#e3e8e5; --bg:#f6f8f7; --card:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;font-size:19px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px;}
+  /* HERO */
+  header.hero{background:linear-gradient(135deg,var(--green) 0%,#2e8f6e 55%,var(--purple) 130%);
+    color:#fff;padding:72px 0 60px;text-align:center;}
+  header.hero h1{font-size:clamp(2.6rem,6vw,4.2rem);margin:0 0 12px;font-weight:800;letter-spacing:-1px;}
+  header.hero p{font-size:1.35rem;margin:0;opacity:.95;font-weight:300;}
+  /* NAV */
+  nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;flex-wrap:wrap;gap:6px 22px;padding:14px 22px;justify-content:center;}
+  nav a{color:var(--green-d);text-decoration:none;font-weight:600;font-size:1rem;padding:4px 2px;border-bottom:3px solid transparent;}
+  nav a:hover{border-color:var(--green);}
+  /* SECTIONS */
+  section{padding:60px 0;border-bottom:1px solid var(--line);}
+  h2{font-size:clamp(2rem,4.5vw,2.9rem);color:var(--green);margin:0 0 8px;font-weight:800;letter-spacing:-.5px;}
+  h2 .em{font-size:1.6rem;vertical-align:middle;margin-right:10px;}
+  .lead{color:var(--grey);font-size:1.2rem;margin:0 0 32px;max-width:760px;}
+  h3{font-size:1.6rem;margin:34px 0 14px;color:var(--green-d);}
+  h3.p{color:var(--purple-d);}
+  /* PROFILE CARDS */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+  .card{background:var(--card);border-radius:18px;padding:30px;border:1px solid var(--line);
+    box-shadow:0 6px 22px rgba(20,40,30,.05);}
+  .card.him{border-top:7px solid var(--green);}
+  .card.her{border-top:7px solid var(--purple);}
+  .card h3{margin-top:0;font-size:1.9rem;}
+  .stat{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--line);font-size:1.1rem;}
+  .stat:last-child{border:none;}
+  .stat b{font-weight:700;}
+  .badge{display:inline-block;background:var(--green-l);color:var(--green-d);
+    padding:6px 16px;border-radius:999px;font-weight:700;font-size:1.05rem;margin-top:14px;}
+  .badge.p{background:var(--purple-l);color:var(--purple-d);}
+  /* TABLES */
+  .tbl-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);margin:18px 0;background:#fff;}
+  table{width:100%;border-collapse:collapse;font-size:1.08rem;min-width:520px;}
+  thead th{background:var(--green);color:#fff;text-align:left;padding:14px 16px;font-weight:700;font-size:1.05rem;}
+  thead.p th{background:var(--purple);}
+  tbody td{padding:12px 16px;border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:var(--green-l);}
+  table.p tbody tr:nth-child(even){background:var(--purple-l);}
+  td.num,th.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
+  tr.total td{background:#d8e8df!important;font-weight:800;border-top:2px solid var(--green);}
+  table.p tr.total td{background:#e7dcf2!important;border-top-color:var(--purple);}
+  tr.ms td{background:#d8e8df!important;font-weight:800;}
+  table.p tr.ms td{background:#e7dcf2!important;}
+  /* TWO COL */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start;}
+  /* PILLS / lists */
+  .free{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
+  .free span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:1.02rem;}
+  .free b{color:var(--green);}
+  .rules{list-style:none;padding:0;margin:0;display:grid;gap:14px;}
+  .rules li{background:#fff;border-left:6px solid var(--green);border-radius:10px;
+    padding:16px 20px;font-size:1.12rem;box-shadow:0 4px 14px rgba(20,40,30,.04);}
+  .note{background:var(--green-l);border-radius:12px;padding:16px 20px;color:var(--green-d);
+    font-size:1.05rem;margin-top:18px;}
+  .note.p{background:var(--purple-l);color:var(--purple-d);}
+  .spruch{background:#fff5e6;border-bottom:1px solid #f0e0c0;color:#7a5a14;text-align:center;padding:15px 20px;font-size:1.15rem;font-style:italic;font-weight:500;}
+  .spruch button{margin-left:10px;border:none;background:#f0dcae;color:#7a5a14;border-radius:999px;width:28px;height:28px;cursor:pointer;}
+  footer{padding:46px 0 70px;text-align:center;color:var(--grey);font-size:1rem;}
+  footer b{color:var(--green);}
+  @media(max-width:760px){
+    body{font-size:17px;}
+    .cards,.two{grid-template-columns:1fr;}
+    header.hero{padding:54px 0 44px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Unser Plan</h1>
+    <p>Gemeinsam abnehmen &middot; 31. Mai &ndash; 23. August 2026 &middot; satt bleiben, dranbleiben</p>
+  </div>
+</header>
+
+<div class="spruch" id="spruch"></div>
+
+<nav><div class="wrap">
+  <a href="index.html" style="color:#7a4e9e">← Start</a>
+  <a href="#ziele">Ziele</a>
+  <a href="#wochen">Wochenziele</a>
+  <a href="#essen">Essensplan</a>
+  <a href="#optionen">Austausch</a>
+  <a href="#frei">Frei essbar</a>
+  <a href="#eiweiss">Eiweiß</a>
+  <a href="#training">Training</a>
+  <a href="#regeln">Regeln</a>
+  <a href="steuerberater.html" style="color:#7a4e9e">Steuerberater</a>
+  <a href="klausuren.html" style="color:#7a4e9e">Klausuren</a>
+  <a href="lernmaterial.html" style="color:#7a4e9e">Lernmaterial</a>
+  <a href="Partnerin-Tagestracker.html" style="color:#7a4e9e">Mein Tag</a>
+</div></nav>
+
+<!-- ZIELE -->
+<section id="ziele"><div class="wrap">
+  <h2><span class="em">🎯</span>Unsere Ziele</h2>
+  <p class="lead">Gleiches Essen, gleiche Routine &ndash; nur Portionen und Tempo unterscheiden sich. Du gehst zügiger, deine Partnerin ruhiger; beide nachhaltig.</p>
+  <div class="cards">
+    <div class="card him">
+      <h3>Du</h3>
+      <div class="stat"><span>Größe / Alter</span><b>183 cm · 35 J</b></div>
+      <div class="stat"><span>Start</span><b>92,0 kg · BMI 27,5</b></div>
+      <div class="stat"><span>Ziel</span><b>~80–82 kg · BMI ~24</b></div>
+      <div class="stat"><span>Kalorien/Tag</span><b>~1.500 kcal</b></div>
+      <div class="stat"><span>Eiweiß/Tag</span><b>~180 g</b></div>
+      <div class="stat"><span>Tempo</span><b>1,2 kg/Wo (W1–8), dann 0,5</b></div>
+      <div class="stat"><span>Schritte</span><b>~9.000/Tag</b></div>
+      <span class="badge">Meilenstein 82 kg nach 8 Wochen</span>
+    </div>
+    <div class="card her">
+      <h3 class="p">Partnerin</h3>
+      <div class="stat"><span>Größe / Alter</span><b>165 cm · 35 J</b></div>
+      <div class="stat"><span>Start</span><b>72,5 kg · BMI 26,6</b></div>
+      <div class="stat"><span>Ziel</span><b>~66–68 kg · BMI ~24</b></div>
+      <div class="stat"><span>Kalorien/Tag</span><b>~1.500 kcal</b></div>
+      <div class="stat"><span>Eiweiß/Tag</span><b>~120 g</b></div>
+      <div class="stat"><span>Tempo</span><b>0,5 kg/Woche</b></div>
+      <div class="stat"><span>Schritte</span><b>~8.000/Tag</b></div>
+      <span class="badge p">Ziel 66,5 kg nach 12 Wochen</span>
+    </div>
+  </div>
+  <div class="note">Hinweis für dich: 1,2 kg/Woche ist sportlich. Geh nicht unter ~1.500 kcal, halte Eiweiß hoch und schlaf gut. Bricht die Trainingsleistung ein oder bist du ständig platt &rarr; Tempo auf 1,0 senken.</div>
+</div></section>
+
+<!-- WOCHENZIELE -->
+<section id="wochen"><div class="wrap">
+  <h2><span class="em">📅</span>Wochenziele</h2>
+  <p class="lead">Einmal pro Woche wiegen &ndash; Sonntagmorgen, nüchtern. Die erste Woche fällt oft stärker aus (Wasser), das ist normal.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Woche</th><th>Wiegen</th><th class="num">Du – Ziel</th><th class="num">Partnerin – Ziel</th></tr></thead>
+    <tbody>
+      <tr><td>Start</td><td>So 31.05.</td><td class="num">92,0 kg</td><td class="num">72,5 kg</td></tr>
+      <tr><td>Woche 1</td><td>So 07.06.</td><td class="num">90,8 kg</td><td class="num">72,0 kg</td></tr>
+      <tr><td>Woche 2</td><td>So 14.06.</td><td class="num">89,6 kg</td><td class="num">71,5 kg</td></tr>
+      <tr><td>Woche 3</td><td>So 21.06.</td><td class="num">88,4 kg</td><td class="num">71,0 kg</td></tr>
+      <tr><td>Woche 4</td><td>So 28.06.</td><td class="num">87,2 kg</td><td class="num">70,5 kg</td></tr>
+      <tr><td>Woche 5</td><td>So 05.07.</td><td class="num">86,0 kg</td><td class="num">70,0 kg</td></tr>
+      <tr><td>Woche 6</td><td>So 12.07.</td><td class="num">84,8 kg</td><td class="num">69,5 kg</td></tr>
+      <tr><td>Woche 7</td><td>So 19.07.</td><td class="num">83,6 kg</td><td class="num">69,0 kg</td></tr>
+      <tr class="ms"><td>Woche 8 ★</td><td>So 26.07.</td><td class="num">82,4 kg</td><td class="num">68,5 kg</td></tr>
+      <tr><td>Woche 9</td><td>So 02.08.</td><td class="num">81,9 kg</td><td class="num">68,0 kg</td></tr>
+      <tr><td>Woche 10</td><td>So 09.08.</td><td class="num">81,4 kg</td><td class="num">67,5 kg</td></tr>
+      <tr><td>Woche 11</td><td>So 16.08.</td><td class="num">80,9 kg</td><td class="num">67,0 kg</td></tr>
+      <tr class="total"><td>Woche 12</td><td>So 23.08.</td><td class="num">80,4 kg</td><td class="num">66,5 kg</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">★ Woche 8 = dein Meilenstein unter BMI 25. Danach nimmst du das Tempo raus (~0,5 kg/Woche, Kalorien etwas hoch auf ~1.700–1.800).</div>
+</div></section>
+
+<!-- ESSENSPLAN -->
+<section id="essen"><div class="wrap">
+  <h2><span class="em">🍽️</span>Essensplan – Beispieltag</h2>
+  <p class="lead">Beide essen dieselben Gerichte. Da euer Kalorienziel aktuell gleich ist (~1.500 kcal), sind die Portionen sehr ähnlich – Eiweiß ist bei dir nur höher angesetzt.</p>
+  <div class="two">
+    <div>
+      <h3>Du &middot; ~1.500 kcal</h3>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Mahlzeit</th><th>Gericht</th><th class="num">kcal</th><th class="num">Eiweiß</th></tr></thead>
+        <tbody>
+          <tr><td>Frühstück</td><td>4 Spiegeleier + Gurke + 1 TL Öl</td><td class="num">355</td><td class="num">26 g</td></tr>
+          <tr><td>Mittag</td><td>160 g Hähnchen + 50 g Reis + Gemüse</td><td class="num">520</td><td class="num">40 g</td></tr>
+          <tr><td>Snack</td><td>200 g Skyr + 1 Apfel</td><td class="num">200</td><td class="num">20 g</td></tr>
+          <tr><td>Abend</td><td>150 g Fisch + 200 g Kartoffeln + Salat</td><td class="num">470</td><td class="num">32 g</td></tr>
+          <tr class="total"><td colspan="2">Summe</td><td class="num">1.545</td><td class="num">118 g</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">Eiweiß-Booster: 1 Whey-Shake (+120 kcal / +24 g) bringt dich Richtung 180 g, ohne dass es satt-schwer wird.</div>
+    </div>
+    <div>
+      <h3 class="p">Partnerin &middot; ~1.500 kcal</h3>
+      <div class="tbl-wrap"><table class="p">
+        <thead class="p"><tr><th>Mahlzeit</th><th>Gericht</th><th class="num">kcal</th><th class="num">Eiweiß</th></tr></thead>
+        <tbody>
+          <tr><td>Frühstück</td><td>Pfannkuchen: 2 Eier + 3 EL Haferflocken + Philadelphia + Gurke</td><td class="num">355</td><td class="num">19 g</td></tr>
+          <tr><td>Mittag</td><td>130 g Hähnchen + 40 g Reis + Gemüse</td><td class="num">430</td><td class="num">34 g</td></tr>
+          <tr><td>Snack</td><td>150 g Skyr + 1 Apfel</td><td class="num">180</td><td class="num">15 g</td></tr>
+          <tr><td>Abend</td><td>120 g Fisch + 200 g Kartoffeln + Salat</td><td class="num">490</td><td class="num">26 g</td></tr>
+          <tr class="total"><td colspan="2">Summe</td><td class="num">1.455</td><td class="num">94 g</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note p">Für mehr Eiweiß: morgens 3 statt 2 Eier oder ein Klecks Magerquark – Richtung 120 g/Tag.</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- AUSTAUSCH -->
+<section id="optionen"><div class="wrap">
+  <h2><span class="em">🔄</span>Austausch-Optionen</h2>
+  <p class="lead">Damit es nicht langweilig wird: pro Mahlzeit eine Zeile wählen. Werte gelten für deine Portion – die Partnerin nimmt etwas weniger.</p>
+
+  <h3>Frühstück</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Option</th><th>Beschreibung</th><th class="num">kcal</th><th class="num">Eiweiß</th></tr></thead>
+    <tbody>
+      <tr><td>Spiegeleier</td><td>4 Eier + Gurke + 1 TL Öl</td><td class="num">355</td><td class="num">26 g</td></tr>
+      <tr><td>Quark-Bowl</td><td>250 g Magerquark + 40 g Haferflocken + Beeren</td><td class="num">385</td><td class="num">38 g</td></tr>
+      <tr><td>Rührei</td><td>3 Eier + Gemüse + 1 Scheibe Vollkornbrot</td><td class="num">350</td><td class="num">22 g</td></tr>
+      <tr><td>Skyr-Müsli</td><td>250 g Skyr + 30 g Haferflocken + 1 Banane</td><td class="num">340</td><td class="num">24 g</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Mittagessen</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Option</th><th>Beschreibung</th><th class="num">kcal</th><th class="num">Eiweiß</th></tr></thead>
+    <tbody>
+      <tr><td>Hähnchen-Reis</td><td>160 g Hähnchen + 50 g Reis + Gemüse</td><td class="num">520</td><td class="num">40 g</td></tr>
+      <tr><td>Pute-Kartoffel</td><td>160 g Pute + 250 g Kartoffeln + Brokkoli</td><td class="num">480</td><td class="num">38 g</td></tr>
+      <tr><td>Linsen-Bowl</td><td>200 g Linsen + 40 g Feta + Gemüse</td><td class="num">470</td><td class="num">26 g</td></tr>
+      <tr><td>Thunfisch-Pasta</td><td>80 g Vollkornnudeln + 1 Dose Thunfisch + Tomatensauce</td><td class="num">450</td><td class="num">35 g</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Snack</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Option</th><th>Beschreibung</th><th class="num">kcal</th><th class="num">Eiweiß</th></tr></thead>
+    <tbody>
+      <tr><td>Skyr + Obst</td><td>200 g Skyr + 1 Apfel</td><td class="num">200</td><td class="num">20 g</td></tr>
+      <tr><td>Quark-Dip</td><td>150 g Magerquark + Kräuter + Rohkost</td><td class="num">120</td><td class="num">19 g</td></tr>
+      <tr><td>Hüttenkäse</td><td>200 g Hüttenkäse + Gurke/Tomate</td><td class="num">200</td><td class="num">26 g</td></tr>
+      <tr><td>Shake (bei Eile)</td><td>1 Scoop Whey + Wasser</td><td class="num">120</td><td class="num">24 g</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Abendessen</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Option</th><th>Beschreibung</th><th class="num">kcal</th><th class="num">Eiweiß</th></tr></thead>
+    <tbody>
+      <tr><td>Fisch + Kartoffel</td><td>150 g Lachs + 200 g Kartoffeln + Salat</td><td class="num">470</td><td class="num">32 g</td></tr>
+      <tr><td>Hack-Pfanne</td><td>150 g mageres Rinderhack + Gemüse</td><td class="num">350</td><td class="num">33 g</td></tr>
+      <tr><td>Omelett</td><td>3 Eier + Schinken + Gemüse + Salat</td><td class="num">380</td><td class="num">28 g</td></tr>
+      <tr><td>Tofu-Wok</td><td>150 g Tofu + viel Gemüse + etwas Reis</td><td class="num">420</td><td class="num">20 g</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<!-- FREI ESSBAR -->
+<section id="frei"><div class="wrap">
+  <h2><span class="em">🥗</span>Frei essbar</h2>
+  <p class="lead">Diese Lebensmittel haben kaum Kalorien – damit könnt ihr jede Mahlzeit auffüllen, wenn ihr noch Hunger habt (kcal je 100 g).</p>
+  <div class="free">
+    <span>Gurke <b>15</b></span>
+    <span>Salat <b>15</b></span>
+    <span>Zucchini <b>17</b></span>
+    <span>Tomate <b>18</b></span>
+    <span>Pilze <b>22</b></span>
+    <span>Spinat <b>23</b></span>
+    <span>Blumenkohl <b>25</b></span>
+    <span>Paprika <b>30</b></span>
+    <span>Brokkoli <b>35</b></span>
+    <span>Möhren <b>40</b></span>
+    <span>Wasser / Tee / Kaffee schwarz <b>0</b></span>
+    <span>Senf · Essig · Zitrone · Kräuter <b>~0</b></span>
+  </div>
+</div></section>
+
+<!-- EIWEISS -->
+<section id="eiweiss"><div class="wrap">
+  <h2><span class="em">💪</span>Eiweiß-Spickzettel</h2>
+  <p class="lead">Eiweiß macht satt und schützt die Muskeln im Defizit. Pro Portion:</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Lebensmittel</th><th>Menge</th><th class="num">kcal</th><th class="num">Eiweiß</th></tr></thead>
+    <tbody>
+      <tr><td>Magerquark</td><td>250 g</td><td class="num">165</td><td class="num">32 g</td></tr>
+      <tr><td>Hähnchenbrust</td><td>150 g</td><td class="num">250</td><td class="num">35 g</td></tr>
+      <tr><td>Lachs / Fisch</td><td>150 g</td><td class="num">300</td><td class="num">30 g</td></tr>
+      <tr><td>Eier</td><td>3 Stück</td><td class="num">225</td><td class="num">19 g</td></tr>
+      <tr><td>Skyr / griech. Joghurt</td><td>200 g</td><td class="num">105</td><td class="num">20 g</td></tr>
+      <tr><td>Hüttenkäse</td><td>200 g</td><td class="num">200</td><td class="num">26 g</td></tr>
+      <tr><td>Harzer Käse</td><td>100 g</td><td class="num">125</td><td class="num">30 g</td></tr>
+      <tr><td>Linsen / Bohnen (gekocht)</td><td>200 g</td><td class="num">230</td><td class="num">16 g</td></tr>
+      <tr><td>Tofu</td><td>150 g</td><td class="num">180</td><td class="num">18 g</td></tr>
+      <tr><td>Thunfisch (Dose)</td><td>1 Dose</td><td class="num">100</td><td class="num">25 g</td></tr>
+      <tr><td>Whey-Shake</td><td>1 Scoop</td><td class="num">120</td><td class="num">24 g</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<!-- TRAINING -->
+<section id="training"><div class="wrap">
+  <h2><span class="em">🏋️</span>Trainingsplan</h2>
+  <p class="lead">Krafttraining hält im Defizit eure Muskeln &ndash; dazu täglich Bewegung. Steigert Gewicht oder Wiederholungen langsam, sobald es leichter fällt.</p>
+
+  <h3>Du &middot; 3× pro Woche (Ganzkörper, A/B im Wechsel)</h3>
+  <div class="two">
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Plan A</th><th class="num">Sätze × Wdh.</th></tr></thead>
+      <tbody>
+        <tr><td>Kniebeuge / Beinpresse</td><td class="num">3 × 8–12</td></tr>
+        <tr><td>Bankdrücken / Liegestütz</td><td class="num">3 × 8–12</td></tr>
+        <tr><td>Rudern (Kabel/Kurzhantel)</td><td class="num">3 × 10–12</td></tr>
+        <tr><td>Schulterdrücken</td><td class="num">3 × 10–12</td></tr>
+        <tr><td>Plank</td><td class="num">3 × 30–45 s</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Plan B</th><th class="num">Sätze × Wdh.</th></tr></thead>
+      <tbody>
+        <tr><td>Kreuzheben / Hip Thrust</td><td class="num">3 × 8–10</td></tr>
+        <tr><td>Latzug / Klimmzug</td><td class="num">3 × 8–12</td></tr>
+        <tr><td>Schrägbankdrücken</td><td class="num">3 × 10–12</td></tr>
+        <tr><td>Bizeps + Trizeps</td><td class="num">je 3 × 12</td></tr>
+        <tr><td>Beinheben / Crunch</td><td class="num">3 × 12–15</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="note">Abfolge z. B. Mo&nbsp;A · Mi&nbsp;B · Fr&nbsp;A, nächste Woche B/A/B. Aufwärmen nicht vergessen.</div>
+
+  <h3 class="p">Partnerin &middot; 2× pro Woche (Ganzkörper)</h3>
+  <div class="tbl-wrap"><table class="p">
+    <thead class="p"><tr><th>Übung</th><th class="num">Sätze × Wdh.</th></tr></thead>
+    <tbody>
+      <tr><td>Kniebeuge (Körpergewicht/Kurzhantel)</td><td class="num">3 × 12–15</td></tr>
+      <tr><td>Ausfallschritte</td><td class="num">3 × 10 je Bein</td></tr>
+      <tr><td>Liegestütz (Knie / erhöht)</td><td class="num">3 × 8–12</td></tr>
+      <tr><td>Rudern mit Band / Kurzhantel</td><td class="num">3 × 12</td></tr>
+      <tr><td>Schulterdrücken (leichte KH)</td><td class="num">3 × 12</td></tr>
+      <tr><td>Glute Bridge / Hip Thrust</td><td class="num">3 × 15</td></tr>
+      <tr><td>Plank</td><td class="num">3 × 20–40 s</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Beide &middot; täglich</h3>
+  <ul class="rules">
+    <li><b>Schritte:</b> du ~9.000, Partnerin ~8.000 – am einfachsten über 1–2 zügige Spaziergänge zusammen.</li>
+    <li><b>Spaziergang nach dem Abendessen</b> (20–30 Min): senkt den Blutzucker, hilft Verdauung & Schlaf.</li>
+    <li><b>Ein Ruhetag</b> pro Woche ist erlaubt und wichtig – der Körper baut in der Pause auf.</li>
+  </ul>
+</div></section>
+
+<!-- REGELN -->
+<section id="regeln"><div class="wrap">
+  <h2><span class="em">✅</span>Die Regeln, die zählen</h2>
+  <ul class="rules">
+    <li><b>Eiweiß zuerst:</b> jede Mahlzeit startet mit einer Eiweißquelle – dämpft den Hunger am stärksten.</li>
+    <li><b>Volumen statt Kalorien:</b> Teller halb voll mit Gemüse/Salat. Viel Masse, wenig Kalorien.</li>
+    <li><b>Keine Kalorien trinken:</b> Wasser, Tee, Kaffee schwarz. Kein Saft, keine Softdrinks, wenig Alkohol.</li>
+    <li><b>Gemeinsam dranbleiben:</b> zusammen kochen und bewegen macht es leicht.</li>
+    <li><b>Kein Alles-oder-nichts:</b> ein schwacher Tag ist egal – am nächsten einfach weiter.</li>
+  </ul>
+</div></section>
+
+<footer><div class="wrap">
+  Ziel nach 12 Wochen: <b>Du ≈ 80,4 kg</b> &middot; <b>Partnerin ≈ 66,5 kg</b><br>
+  Unser gemeinsamer Plan · zuletzt aktualisiert Mai 2026
+</div></footer>
+
+<script>
+const SPRUECHE=[
+  "Jede geübte Klausur bringt dich näher ans Ziel.",
+  "Erst die Arbeit, dann das Meer – Zypern wartet auf dich. 🌊",
+  "Du musst nicht alles heute können, nur heute ein bisschen mehr als gestern.",
+  "§ für §, Tag für Tag – du wächst an dieser Prüfung.",
+  "Pausen sind kein Faulsein, sondern Teil des Lernens.",
+  "Atme tief durch: Du hast schon so viel geschafft.",
+  "Sonne, Kaffee, ein Gesetzbuch – und du packst das.",
+  "Stark im Kopf, stark im Körper – ihr zwei zieht das durch.",
+  "Ein Kapitel nach dem anderen. So besteht man Examen.",
+  "Zukünftige Steuerberaterin im Aufbau. 💪",
+  "Wer am Meer lernt, lernt mit Aussicht auf Erfolg."
+];
+const el=document.getElementById("spruch");
+let idx=Math.floor(Date.now()/86400000)%SPRUECHE.length;
+function show(){ el.innerHTML="„"+SPRUECHE[idx]+"“ <button title='Nächster Spruch' onclick='next()'>↻</button>"; }
+function next(){ idx=(idx+1)%SPRUECHE.length; show(); }
+show();
+</script>
+</body>
+</html>

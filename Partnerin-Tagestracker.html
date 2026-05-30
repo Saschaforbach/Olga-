@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mein Tag – Tracker</title>
+<style>
+  :root{
+    --purple:#7a4e9e; --purple-d:#3d2a52; --purple-l:#f3ecf7;
+    --blue:#2f8fd0; --blue-l:#e7f3fb;
+    --green:#1f9f6b; --amber:#e0962a; --red:#d05050;
+    --ink:#1d2421; --grey:#6a7570; --line:#e3e8e5; --bg:#f6f4f9; --card:#fff;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;font-size:18px;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px;}
+  header{background:linear-gradient(135deg,var(--purple) 0%,#9a6bbf 100%);color:#fff;
+    padding:42px 0 34px;text-align:center;}
+  header h1{margin:0 0 6px;font-size:clamp(2rem,6vw,2.8rem);font-weight:800;}
+  header p{margin:0;opacity:.95;font-size:1.15rem;font-weight:300;}
+  header .date{margin-top:12px;font-size:1.05rem;background:rgba(255,255,255,.2);
+    display:inline-block;padding:5px 16px;border-radius:999px;}
+  section{margin:26px 0;}
+  .card{background:var(--card);border-radius:18px;padding:24px;border:1px solid var(--line);
+    box-shadow:0 6px 22px rgba(60,42,82,.06);}
+  h2{font-size:1.45rem;margin:0 0 16px;color:var(--purple-d);display:flex;align-items:center;gap:10px;}
+  h2 .em{font-size:1.5rem;}
+  /* WATER */
+  .glasses{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0;}
+  .glass{width:46px;height:58px;border:3px solid var(--blue);border-radius:6px 6px 12px 12px;
+    cursor:pointer;position:relative;overflow:hidden;background:var(--blue-l);transition:.15s;}
+  .glass.full{background:var(--blue);}
+  .glass:hover{transform:translateY(-3px);}
+  .water-info{display:flex;justify-content:space-between;align-items:baseline;font-size:1.1rem;}
+  .water-info b{font-size:1.6rem;color:var(--blue);}
+  .wbtns{margin-top:8px;display:flex;gap:10px;}
+  /* FORM */
+  .row{display:grid;grid-template-columns:1fr 110px 96px;gap:10px;align-items:end;}
+  label{display:block;font-size:.92rem;color:var(--grey);margin-bottom:4px;font-weight:600;}
+  select,input{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;
+    font-size:1rem;font-family:inherit;background:#fff;}
+  select:focus,input:focus{outline:none;border-color:var(--purple);}
+  button{border:none;border-radius:10px;padding:12px 16px;font-size:1rem;font-weight:700;
+    cursor:pointer;font-family:inherit;background:var(--purple);color:#fff;transition:.15s;}
+  button:hover{filter:brightness(1.08);}
+  button.ghost{background:#fff;color:var(--purple);border:1.5px solid var(--purple);}
+  button.mini{padding:8px 12px;font-size:.9rem;}
+  .unit-hint{font-size:.85rem;color:var(--grey);margin-top:6px;min-height:1em;}
+  /* LOG */
+  ul.log{list-style:none;margin:14px 0 0;padding:0;}
+  ul.log li{display:flex;align-items:center;gap:12px;padding:11px 4px;border-top:1px solid var(--line);}
+  ul.log li .nm{flex:1;}
+  ul.log li .nm small{color:var(--grey);}
+  ul.log li .kc{font-weight:700;white-space:nowrap;}
+  ul.log li .pr{color:var(--purple);font-size:.92rem;white-space:nowrap;min-width:52px;text-align:right;}
+  ul.log li .del{background:none;color:var(--red);font-size:1.3rem;padding:0 6px;line-height:1;}
+  .empty{color:var(--grey);font-style:italic;padding:14px 0;}
+  /* TOTALS */
+  .totals{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px;}
+  .meter{background:var(--purple-l);border-radius:14px;padding:16px;}
+  .meter .big{font-size:1.9rem;font-weight:800;color:var(--purple-d);}
+  .meter .sub{font-size:.95rem;color:var(--grey);}
+  .bar{height:12px;background:#fff;border-radius:999px;margin-top:10px;overflow:hidden;border:1px solid var(--line);}
+  .bar i{display:block;height:100%;width:0;background:var(--green);transition:width .3s;}
+  .bar i.over{background:var(--red);}
+  .bar i.prot{background:var(--purple);}
+  .remain{font-size:.95rem;margin-top:8px;font-weight:600;}
+  .remain.ok{color:var(--green);} .remain.over{color:var(--red);}
+  footer{text-align:center;color:var(--grey);font-size:.95rem;padding:30px 0 50px;}
+  .spruch{background:#fff5e6;color:#7a5a14;text-align:center;padding:14px 20px;font-size:1.1rem;font-style:italic;font-weight:500;}
+  .spruch button{margin-left:10px;border:none;background:#f0dcae;color:#7a5a14;border-radius:999px;width:28px;height:28px;cursor:pointer;}
+  .subnav{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;padding:12px 18px;background:#fff;border-bottom:1px solid var(--line);}
+  .subnav a{color:var(--purple-d);text-decoration:none;font-weight:600;}
+  @media(max-width:560px){
+    .row{grid-template-columns:1fr 1fr;}
+    .row .addbtn{grid-column:1 / -1;}
+    .totals{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Mein Tag</h1>
+  <p>Wasser &amp; Essen tracken &middot; Ziel: ~1.500 kcal · ~120 g Eiweiß</p>
+  <div class="date" id="today"></div>
+</header>
+
+<div class="spruch" id="spruch"></div>
+<div class="subnav">
+  <a href="index.html">Start</a>
+  <a href="steuerberater.html">Steuerberater</a>
+  <a href="klausuren.html">Klausuren</a>
+  <a href="lernmaterial.html">Lernmaterial</a>
+  <a href="Partnerin-Tagestracker.html">Mein Tag</a>
+</div>
+
+<div class="wrap">
+
+  <!-- WASSER -->
+  <section class="card">
+    <h2><span class="em">💧</span>Wasser</h2>
+    <div class="water-info">
+      <span><b id="waterMl">0</b> / 2.300 ml</span>
+      <span id="waterGlasses">0 von 9 Gläsern</span>
+    </div>
+    <div class="glasses" id="glasses"></div>
+    <div class="wbtns">
+      <button class="mini" onclick="addGlass(1)">+ Glas (250 ml)</button>
+      <button class="mini ghost" onclick="addGlass(-1)">– Glas</button>
+    </div>
+    <div class="unit-hint">Ziel ~2,3 Liter. An Trainingstagen ruhig 1–2 Gläser mehr.</div>
+  </section>
+
+  <!-- ESSEN EINTRAGEN -->
+  <section class="card">
+    <h2><span class="em">🍽️</span>Essen eintragen</h2>
+    <div class="row">
+      <div>
+        <label for="food">Lebensmittel</label>
+        <select id="food" onchange="updateHint()"></select>
+      </div>
+      <div>
+        <label for="amount">Menge</label>
+        <input type="number" id="amount" min="0" step="1" value="100" oninput="updateHint()">
+      </div>
+      <div class="addbtn">
+        <button onclick="addFood()" style="width:100%">+ Hinzufügen</button>
+      </div>
+    </div>
+    <div class="unit-hint" id="hint"></div>
+
+    <ul class="log" id="log"></ul>
+    <p class="empty" id="emptyMsg">Noch nichts eingetragen. Wähle oben ein Lebensmittel und die Menge.</p>
+  </section>
+
+  <!-- TAGESSUMME -->
+  <section class="card">
+    <h2><span class="em">📊</span>Tagessumme</h2>
+    <div class="totals">
+      <div class="meter">
+        <div class="big"><span id="kcalSum">0</span> kcal</div>
+        <div class="sub">Ziel 1.500 kcal</div>
+        <div class="bar"><i id="kcalBar"></i></div>
+        <div class="remain ok" id="kcalRemain">noch 1.500 kcal übrig</div>
+      </div>
+      <div class="meter">
+        <div class="big"><span id="protSum">0</span> g</div>
+        <div class="sub">Eiweiß-Ziel 120 g</div>
+        <div class="bar"><i id="protBar" class="prot"></i></div>
+        <div class="remain ok" id="protRemain">noch 120 g bis zum Ziel</div>
+      </div>
+    </div>
+    <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="ghost mini" onclick="resetDay()">Tag zurücksetzen</button>
+    </div>
+  </section>
+
+  <footer>
+    Wird automatisch auf diesem Gerät gespeichert · Mein Plan 2026
+  </footer>
+</div>
+
+<script>
+// Lebensmittel-Datenbank.  basis 100 = Werte pro 100 g (Menge in Gramm).
+// basis 1 = Werte pro Stück/Einheit (Menge = Anzahl).
+const FOODS = [
+  // Eiweiß
+  {n:"Magerquark", u:"g", basis:100, kcal:67, p:12.0},
+  {n:"Skyr / Joghurt natur", u:"g", basis:100, kcal:63, p:11.0},
+  {n:"Hähnchenbrust (roh)", u:"g", basis:100, kcal:110, p:23.0},
+  {n:"Putenbrust (roh)", u:"g", basis:100, kcal:105, p:24.0},
+  {n:"Mageres Rinderhack (roh)", u:"g", basis:100, kcal:130, p:20.0},
+  {n:"Lachs", u:"g", basis:100, kcal:200, p:20.0},
+  {n:"Thunfisch (Dose, abgetropft)", u:"g", basis:100, kcal:110, p:26.0},
+  {n:"Hüttenkäse", u:"g", basis:100, kcal:100, p:12.0},
+  {n:"Harzer Käse", u:"g", basis:100, kcal:125, p:30.0},
+  {n:"Feta", u:"g", basis:100, kcal:260, p:14.0},
+  {n:"Tofu", u:"g", basis:100, kcal:120, p:12.0},
+  {n:"Linsen (gekocht)", u:"g", basis:100, kcal:115, p:9.0},
+  {n:"Ei (Stück)", u:"Stück", basis:1, kcal:75, p:6.5},
+  {n:"Whey-Shake (1 Scoop)", u:"Scoop", basis:1, kcal:120, p:24.0},
+  // Kohlenhydrate
+  {n:"Haferflocken", u:"g", basis:100, kcal:370, p:13.0},
+  {n:"Reis (roh)", u:"g", basis:100, kcal:350, p:7.0},
+  {n:"Reis (gekocht)", u:"g", basis:100, kcal:130, p:2.7},
+  {n:"Kartoffeln", u:"g", basis:100, kcal:70, p:2.0},
+  {n:"Vollkornnudeln (roh)", u:"g", basis:100, kcal:345, p:13.0},
+  {n:"Vollkornbrot (Scheibe)", u:"Scheibe", basis:1, kcal:90, p:3.0},
+  // Obst / Gemüse
+  {n:"Apfel (Stück)", u:"Stück", basis:1, kcal:95, p:0.5},
+  {n:"Banane (Stück)", u:"Stück", basis:1, kcal:95, p:1.2},
+  {n:"Beeren", u:"g", basis:100, kcal:45, p:1.0},
+  {n:"Gurke", u:"g", basis:100, kcal:15, p:0.7},
+  {n:"Tomate", u:"g", basis:100, kcal:18, p:0.9},
+  {n:"Paprika", u:"g", basis:100, kcal:30, p:1.0},
+  {n:"Brokkoli", u:"g", basis:100, kcal:35, p:3.0},
+  {n:"Gemischter Salat", u:"g", basis:100, kcal:15, p:1.0},
+  // Fett / Sonstiges
+  {n:"Philadelphia (Doppelrahm)", u:"g", basis:100, kcal:250, p:6.0},
+  {n:"Philadelphia Light", u:"g", basis:100, kcal:150, p:7.0},
+  {n:"Olivenöl (EL)", u:"EL", basis:1, kcal:90, p:0},
+  {n:"Olivenöl (TL)", u:"TL", basis:1, kcal:40, p:0},
+  {n:"Nüsse", u:"g", basis:100, kcal:620, p:18.0},
+];
+
+const KCAL_GOAL = 1500, PROT_GOAL = 120, GLASS_ML = 250, GLASS_COUNT = 9;
+
+// ---- State / Speicherung ----
+function todayKey(){ const d=new Date(); return "tag_"+d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+let state = load();
+
+function load(){
+  try{ const s=JSON.parse(localStorage.getItem(todayKey())); if(s) return s; }catch(e){}
+  return {glasses:0, items:[]};
+}
+function save(){ try{ localStorage.setItem(todayKey(), JSON.stringify(state)); }catch(e){} }
+
+// ---- Init UI ----
+document.getElementById("today").textContent =
+  new Date().toLocaleDateString("de-DE",{weekday:"long",day:"2-digit",month:"long"});
+const sel=document.getElementById("food");
+FOODS.forEach((f,i)=>{ const o=document.createElement("option"); o.value=i; o.textContent=f.n; sel.appendChild(o); });
+
+function unitLabel(f){ return f.basis===100 ? "Gramm" : f.u; }
+function updateHint(){
+  const f=FOODS[+sel.value]; const a=parseFloat(document.getElementById("amount").value)||0;
+  const k=Math.round(f.kcal*a/f.basis), p=+(f.p*a/f.basis).toFixed(1);
+  document.getElementById("hint").textContent =
+    `Menge in ${unitLabel(f)} → ${k} kcal · ${p} g Eiweiß`;
+}
+
+function addFood(){
+  const f=FOODS[+sel.value]; const a=parseFloat(document.getElementById("amount").value);
+  if(!a||a<=0) return;
+  state.items.push({n:f.n, u:unitLabel(f), a, kcal:Math.round(f.kcal*a/f.basis), p:+(f.p*a/f.basis).toFixed(1)});
+  save(); render();
+}
+function delItem(i){ state.items.splice(i,1); save(); render(); }
+function resetDay(){ if(confirm("Wirklich den ganzen Tag zurücksetzen?")){ state={glasses:0,items:[]}; save(); render(); } }
+
+function addGlass(n){ state.glasses=Math.max(0,Math.min(20,state.glasses+n)); save(); render(); }
+
+function render(){
+  // Wasser
+  const g=document.getElementById("glasses"); g.innerHTML="";
+  const shown=Math.max(GLASS_COUNT, state.glasses);
+  for(let i=0;i<shown;i++){ const d=document.createElement("div"); d.className="glass"+(i<state.glasses?" full":""); d.onclick=()=>setGlasses(i+1); g.appendChild(d); }
+  document.getElementById("waterMl").textContent=(state.glasses*GLASS_ML).toLocaleString("de-DE");
+  document.getElementById("waterGlasses").textContent=state.glasses+" von "+GLASS_COUNT+" Gläsern";
+
+  // Log
+  const log=document.getElementById("log"); log.innerHTML="";
+  document.getElementById("emptyMsg").style.display = state.items.length? "none":"block";
+  state.items.forEach((it,i)=>{
+    const li=document.createElement("li");
+    li.innerHTML=`<span class="nm">${it.n} <small>(${it.a} ${it.u})</small></span>
+      <span class="kc">${it.kcal} kcal</span><span class="pr">${it.p} g</span>`;
+    const b=document.createElement("button"); b.className="del"; b.textContent="×"; b.title="Löschen"; b.onclick=()=>delItem(i);
+    li.appendChild(b); log.appendChild(li);
+  });
+
+  // Summen
+  const kc=state.items.reduce((s,x)=>s+x.kcal,0);
+  const pr=+state.items.reduce((s,x)=>s+x.p,0).toFixed(1);
+  document.getElementById("kcalSum").textContent=kc.toLocaleString("de-DE");
+  document.getElementById("protSum").textContent=pr;
+  const kb=document.getElementById("kcalBar"); kb.style.width=Math.min(100,kc/KCAL_GOAL*100)+"%"; kb.className=kc>KCAL_GOAL?"over":"";
+  const pb=document.getElementById("protBar"); pb.style.width=Math.min(100,pr/PROT_GOAL*100)+"%"; pb.className="prot";
+  const kr=document.getElementById("kcalRemain"); const left=KCAL_GOAL-kc;
+  kr.textContent = left>=0 ? `noch ${left.toLocaleString("de-DE")} kcal übrig` : `${(-left).toLocaleString("de-DE")} kcal über dem Ziel`;
+  kr.className="remain "+(left>=0?"ok":"over");
+  const prr=document.getElementById("protRemain"); const pleft=+(PROT_GOAL-pr).toFixed(1);
+  prr.textContent = pleft>0 ? `noch ${pleft} g bis zum Ziel` : `Eiweiß-Ziel erreicht 💪`;
+  prr.className="remain "+(pleft>0?"ok":"ok");
+}
+function setGlasses(n){ state.glasses=(state.glasses===n)?n-1:n; save(); render(); }
+
+updateHint(); render();
+
+// Spruch des Tages
+const SPRUECHE=["Jede geübte Klausur bringt dich näher ans Ziel.","Erst die Arbeit, dann das Meer – Zypern wartet. 🌊","Pausen sind Teil des Lernens.","Du hast schon so viel geschafft.","Sonne, Kaffee, ein Gesetzbuch – und du packst das.","Zukünftige Steuerberaterin im Aufbau. 💪","Ein Kapitel nach dem anderen."];
+const sp=document.getElementById("spruch");
+let si=Math.floor(Date.now()/86400000)%SPRUECHE.length;
+function spShow(){ sp.innerHTML="„"+SPRUECHE[si]+"“ <button onclick='spNext()'>↻</button>"; }
+function spNext(){ si=(si+1)%SPRUECHE.length; spShow(); }
+spShow();
+</script>
+</body>
+</html>

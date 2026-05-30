@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Übungsklausuren – Steuerberaterprüfung</title>
+<style>
+  :root{
+    --purple:#7a4e9e; --purple-d:#3d2a52; --purple-l:#f3ecf7;
+    --ink:#1d2421; --grey:#5f6b66; --line:#e3e8e5; --bg:#f6f4f9; --card:#fff;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:18px;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px;}
+  header.hero{background:linear-gradient(135deg,var(--purple-d),var(--purple) 80%,#9a6bbf);color:#fff;padding:54px 0 42px;text-align:center;}
+  header.hero h1{margin:0 0 8px;font-size:clamp(2rem,5vw,3.1rem);font-weight:800;}
+  header.hero p{margin:0;opacity:.95;font-size:1.15rem;font-weight:300;}
+  .spruch{background:#fff5e6;border-bottom:1px solid #f0e0c0;color:#7a5a14;text-align:center;padding:14px 20px;font-size:1.12rem;font-style:italic;font-weight:500;}
+  .spruch button{margin-left:10px;border:none;background:#f0dcae;color:#7a5a14;border-radius:999px;width:28px;height:28px;cursor:pointer;}
+  nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;padding:13px 20px;justify-content:center;}
+  nav a{color:var(--purple-d);text-decoration:none;font-weight:600;padding:4px 2px;border-bottom:3px solid transparent;}
+  nav a:hover,nav a.active{border-color:var(--purple);}
+  section{padding:42px 0;border-bottom:1px solid var(--line);}
+  h2{font-size:clamp(1.6rem,4vw,2.2rem);color:var(--purple);margin:0 0 6px;font-weight:800;display:flex;gap:10px;align-items:center;}
+  .lead{color:var(--grey);font-size:1.12rem;margin:0 0 22px;}
+  .disclaimer{background:#fff5e6;border-radius:12px;padding:14px 18px;color:#7a5a14;font-size:.98rem;margin-bottom:24px;}
+  .klausur{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 6px 20px rgba(60,42,82,.05);}
+  .klausur .tag{display:inline-block;background:var(--purple-l);color:var(--purple-d);border-radius:999px;padding:4px 14px;font-size:.82rem;font-weight:700;margin-bottom:10px;}
+  .klausur h3{margin:0 0 12px;font-size:1.3rem;color:var(--purple-d);}
+  .klausur .frage{font-weight:600;margin:12px 0 0;}
+  details{margin-top:16px;border-top:1px dashed var(--line);padding-top:14px;}
+  details summary{cursor:pointer;font-weight:700;color:var(--purple);font-size:1.05rem;list-style:none;}
+  details summary::-webkit-details-marker{display:none;}
+  details summary::before{content:"▸ ";color:var(--purple);}
+  details[open] summary::before{content:"▾ ";}
+  details .loesung{margin-top:12px;background:var(--purple-l);border-radius:10px;padding:14px 18px;}
+  details .loesung p{margin:0 0 8px;}
+  details .loesung b{color:var(--purple-d);}
+  /* PDF */
+  .pdfbox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;}
+  .pdfbox input[type=file]{font-size:1rem;}
+  .pickbtn{display:inline-block;background:var(--purple);color:#fff;border-radius:10px;padding:12px 18px;font-weight:700;cursor:pointer;}
+  #pdfview{width:100%;height:80vh;border:1px solid var(--line);border-radius:10px;margin-top:16px;display:none;background:#fafafa;}
+  .pdfhint{color:var(--grey);font-size:.95rem;margin-top:12px;}
+  footer{padding:34px 0 60px;text-align:center;color:var(--grey);font-size:.95rem;}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1>Übungsklausuren</h1>
+    <p>Eigene Aufgaben mit Lösungen + offizielle Klausuren öffnen</p>
+  </div>
+</header>
+
+<div class="spruch" id="spruch"></div>
+
+<nav><div class="wrap">
+  <a href="index.html">Start</a>
+  <a href="steuerberater.html">Steuerberater</a>
+  <a href="klausuren.html" class="active">Klausuren</a>
+  <a href="lernmaterial.html">Lernmaterial</a>
+  <a href="Partnerin-Tagestracker.html">Mein Tag</a>
+</div></nav>
+
+<!-- EIGENE KLAUSUREN -->
+<section><div class="wrap">
+  <h2><span>✍️</span>Eigene Übungsaufgaben</h2>
+  <p class="lead">Originale Übungsfälle im Prüfungsstil – Lösung jeweils zum Aufklappen. Erst selbst lösen, dann vergleichen!</p>
+  <div class="disclaimer">⚠️ Übungsmaterial zum Trainieren der Technik. Zahlen, Freibeträge und Fristen können sich ändern – bitte immer am <b>aktuellen Rechtsstand</b> prüfen.</div>
+
+  <div class="klausur">
+    <span class="tag">Umsatzsteuer</span>
+    <h3>Aufgabe 1 – Innergemeinschaftlicher Erwerb & Vorsteuer</h3>
+    <p>Unternehmer U (Regelbesteuerung, Sitz Deutschland) kauft Waren bei einem Unternehmer in Frankreich (gültige FR-USt-IdNr.) für 10.000 € und lässt sie nach Deutschland transportieren. U verkauft die Waren an einen deutschen Privatkunden für 15.000 € netto weiter.</p>
+    <p class="frage">a) Wie wird der Einkauf umsatzsteuerlich behandelt? b) Vorsteuerabzug? c) USt auf den Verkauf?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p><b>a)</b> Innergemeinschaftlicher Erwerb (§ 1a UStG), in Deutschland steuerbar und -pflichtig: 19 % × 10.000 € = <b>1.900 € Erwerbsteuer</b>. Der französische Lieferant erbringt eine steuerfreie innergemeinschaftliche Lieferung.</p>
+      <p><b>b)</b> U darf die Erwerbsteuer gleichzeitig als Vorsteuer abziehen (§ 15 Abs. 1 Nr. 3 UStG) → wirtschaftlich <b>neutral</b>.</p>
+      <p><b>c)</b> Lieferung an Privatkunden in DE: steuerbar/-pflichtig, 19 % × 15.000 € = <b>2.850 € USt</b>, die U abführen muss.</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="tag">Einkommensteuer</span>
+    <h3>Aufgabe 2 – Lineare AfA mit unterjähriger Anschaffung</h3>
+    <p>Ein Einzelunternehmer schafft am 1. Juli eine Maschine für 24.000 € netto an. Betriebsgewöhnliche Nutzungsdauer 8 Jahre, lineare Abschreibung.</p>
+    <p class="frage">Wie hoch ist die AfA im Anschaffungsjahr und im Folgejahr?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p>Jahres-AfA linear = 24.000 € ÷ 8 = <b>3.000 €</b>.</p>
+      <p><b>Anschaffungsjahr:</b> zeitanteilig ab dem Anschaffungsmonat (§ 7 Abs. 1 S. 4 EStG): 6/12 × 3.000 € = <b>1.500 €</b>.</p>
+      <p><b>Folgejahr:</b> volle <b>3.000 €</b>.</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="tag">Bilanzsteuerrecht</span>
+    <h3>Aufgabe 3 – Rückstellung für ungewisse Verbindlichkeiten</h3>
+    <p>Zum 31.12. droht dem Unternehmen aus einem laufenden Prozess eine Zahlungsverpflichtung. Die Inanspruchnahme ist wahrscheinlich, die voraussichtliche Höhe beträgt 20.000 €; mit einer Inanspruchnahme ist erst in gut 2 Jahren zu rechnen.</p>
+    <p class="frage">Wie ist in Handels- und Steuerbilanz zu bilanzieren?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p><b>Handelsbilanz:</b> Pflicht zur Bildung einer Rückstellung für ungewisse Verbindlichkeiten (§ 249 Abs. 1 HGB), Bewertung mit dem Erfüllungsbetrag 20.000 €.</p>
+      <p><b>Steuerbilanz:</b> über die Maßgeblichkeit (§ 5 Abs. 1 EStG) ebenfalls anzusetzen. Da Laufzeit ≥ 12 Monate, ist nach § 6 Abs. 1 Nr. 3a EStG <b>abzuzinsen</b> (5,5 %); künftige Preis-/Kostensteigerungen bleiben unberücksichtigt. Ansatz also mit dem <b>abgezinsten</b> Betrag.</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="tag">Verfahrensrecht (AO)</span>
+    <h3>Aufgabe 4 – Bekanntgabe & Einspruchsfrist</h3>
+    <p>Das Finanzamt gibt einen Steuerbescheid zur Post. Der Bescheid wird mit einfachem Brief versandt.</p>
+    <p class="frage">Wann gilt der Bescheid als bekanntgegeben und wie lange läuft die Einspruchsfrist?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p><b>Bekanntgabe:</b> Seit 1.1.2025 gilt die <b>Vier-Tage-Fiktion</b> (§ 122 Abs. 2 Nr. 1 AO) – der Bescheid gilt am vierten Tag nach Aufgabe zur Post als bekanntgegeben (früher: drei Tage). Fällt dieser Tag auf einen Samstag, Sonntag oder Feiertag, verschiebt sich die Bekanntgabe auf den nächsten Werktag.</p>
+      <p><b>Einspruchsfrist:</b> ein Monat ab Bekanntgabe (§ 355 Abs. 1 AO). Fristberechnung nach § 108 AO i. V. m. §§ 187 ff. BGB; Fristende ggf. auf den nächsten Werktag.</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="tag">Erbschaft-/Schenkungsteuer</span>
+    <h3>Aufgabe 5 – Schenkung an das Kind</h3>
+    <p>Ein Vater schenkt seiner Tochter 600.000 € in bar. Vorschenkungen innerhalb der letzten 10 Jahre liegen nicht vor.</p>
+    <p class="frage">Wie hoch ist die Schenkungsteuer?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p><b>Steuerklasse I</b> (Kind). Persönlicher Freibetrag 400.000 € (§ 16 Abs. 1 Nr. 2 ErbStG).</p>
+      <p>Steuerpflichtiger Erwerb = 600.000 − 400.000 = <b>200.000 €</b>.</p>
+      <p>Steuersatz Steuerklasse I bis 300.000 € = 11 % (§ 19 ErbStG) → <b>22.000 € Schenkungsteuer</b>.</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="tag">Körperschaftsteuer</span>
+    <h3>Aufgabe 6 – KSt & Solidaritätszuschlag</h3>
+    <p>Eine GmbH ermittelt für das Jahr ein zu versteuerndes Einkommen von 100.000 €.</p>
+    <p class="frage">Wie hoch sind Körperschaftsteuer und Solidaritätszuschlag?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p>KSt-Satz 15 % (§ 23 Abs. 1 KStG): 15 % × 100.000 € = <b>15.000 € KSt</b>.</p>
+      <p>Solidaritätszuschlag 5,5 % auf die KSt: 5,5 % × 15.000 € = <b>825 €</b>.</p>
+      <p>Hinweis: Gewerbesteuer fällt zusätzlich an und ist nicht abziehbar.</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="tag">Gewerbesteuer</span>
+    <h3>Aufgabe 7 – Gewerbesteuer einer GmbH</h3>
+    <p>Eine GmbH hat einen Gewerbeertrag (nach Hinzurechnungen/Kürzungen) von 100.000 €. Der Hebesatz der Gemeinde beträgt 400 %.</p>
+    <p class="frage">Wie hoch ist die Gewerbesteuer?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p>Steuermesszahl 3,5 % (§ 11 GewStG): 3,5 % × 100.000 € = <b>3.500 € Messbetrag</b>. (Kein Freibetrag von 24.500 €, da Kapitalgesellschaft.)</p>
+      <p>GewSt = Messbetrag × Hebesatz = 3.500 € × 400 % = <b>14.000 €</b>.</p>
+    </div></details>
+  </div>
+
+  <div class="klausur">
+    <span class="tag">Umsatzsteuer</span>
+    <h3>Aufgabe 8 – Kleinunternehmer (§ 19 UStG)</h3>
+    <p>Eine Existenzgründerin hatte im Vorjahr 22.000 € Umsatz; im laufenden Jahr erwartet sie rund 40.000 €.</p>
+    <p class="frage">Kann sie die Kleinunternehmerregelung nutzen? Welche Folgen hat das?</p>
+    <details><summary>Lösung anzeigen</summary><div class="loesung">
+      <p>Seit 1.1.2025 gilt: Kleinunternehmer, wenn der Vorjahresumsatz <b>≤ 25.000 €</b> war und im laufenden Jahr <b>≤ 100.000 €</b> bleibt. Beides ist erfüllt → <b>Kleinunternehmerregelung möglich</b>.</p>
+      <p>Folge: Sie weist <b>keine USt</b> in Rechnungen aus, hat aber auch <b>keinen Vorsteuerabzug</b>. Wird die 100.000-€-Grenze unterjährig überschritten, endet die Regelung ab diesem Umsatz.</p>
+    </div></details>
+  </div>
+</div></section>
+
+<!-- PDF VIEWER -->
+<section><div class="wrap">
+  <h2><span>📄</span>Offizielle Klausur öffnen</h2>
+  <p class="lead">Lade die kostenlosen Original-Klausuren herunter (Links auf der Steuerberater-Seite) und öffne die PDF hier direkt zum Lesen. Die Datei bleibt auf deinem Gerät – sie wird nicht hochgeladen.</p>
+  <div class="pdfbox">
+    <label class="pickbtn" for="pdfpick">📂 PDF auswählen</label>
+    <input type="file" id="pdfpick" accept="application/pdf" style="display:none" onchange="openPdf(event)">
+    <span id="pdfname" style="margin-left:12px;color:var(--grey);"></span>
+    <iframe id="pdfview" title="PDF-Ansicht"></iframe>
+    <p class="pdfhint">Tipp: Speichere die heruntergeladenen Klausuren z. B. in einem Ordner „Klausuren" – so findest du sie schnell wieder. Auf dem iPhone/iPad: PDF in „Dateien" speichern und hier auswählen.</p>
+  </div>
+  <div class="disclaimer" style="margin-top:18px;">Hinweis: Die offiziellen Klausuren sind urheberrechtlich geschützt. Lade sie nur aus legalen Quellen und teile sie nicht öffentlich (z. B. nicht mit ins GitHub-Repo committen).</div>
+</div></section>
+
+<footer><div class="wrap">Üben, vergleichen, besser werden – du schaffst das! 💪</div></footer>
+
+<script>
+function openPdf(e){
+  const f=e.target.files[0]; if(!f) return;
+  const url=URL.createObjectURL(f);
+  const v=document.getElementById("pdfview");
+  v.src=url; v.style.display="block";
+  document.getElementById("pdfname").textContent=f.name;
+}
+const SPRUECHE=["Erst selbst lösen, dann vergleichen.","Jede Klausur macht dich sicherer.","Erst die Arbeit, dann das Meer. 🌊","Klausurtechnik schlägt Auswendiglernen.","Du hast schon so viel geschafft.","Zukünftige Steuerberaterin im Aufbau. 💪"];
+const sp=document.getElementById("spruch");
+let si=Math.floor(Date.now()/86400000)%SPRUECHE.length;
+function spShow(){ sp.innerHTML="„"+SPRUECHE[si]+"“ <button onclick='spNext()'>↻</button>"; }
+function spNext(){ si=(si+1)%SPRUECHE.length; spShow(); }
+spShow();
+</script>
+</body>
+</html>

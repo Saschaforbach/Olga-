@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Startseite – Mein Weg zur Steuerberaterin</title>
+<style>
+  :root{
+    --purple:#7a4e9e; --purple-d:#3d2a52; --purple-l:#f3ecf7;
+    --gold:#c79a3a; --teal:#1f9f8a; --green:#1f6f54;
+    --ink:#1d2421; --grey:#5f6b66; --line:#e6e2ec; --bg:#f6f4f9; --card:#fff;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:18px;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 22px;}
+  /* HERO */
+  header.hero{background:linear-gradient(135deg,var(--purple-d) 0%,var(--purple) 60%,#a374c6 120%);
+    color:#fff;padding:64px 0 56px;text-align:center;position:relative;overflow:hidden;}
+  header.hero::after{content:"🌊";position:absolute;right:24px;bottom:10px;font-size:3.5rem;opacity:.25;}
+  header.hero .hi{font-size:1.2rem;opacity:.9;font-weight:300;margin:0 0 6px;}
+  header.hero h1{margin:0 0 14px;font-size:clamp(2.2rem,6vw,3.6rem);font-weight:800;letter-spacing:-.5px;}
+  /* Countdown */
+  .countdown{display:inline-flex;gap:18px;background:rgba(255,255,255,.16);border-radius:16px;padding:14px 26px;backdrop-filter:blur(6px);}
+  .countdown div{text-align:center;}
+  .countdown .num{font-size:2.1rem;font-weight:800;line-height:1;}
+  .countdown .lbl{font-size:.8rem;opacity:.9;text-transform:uppercase;letter-spacing:.5px;}
+  /* Spruch */
+  .spruch{background:#fff5e6;border-bottom:1px solid #f0e0c0;color:#7a5a14;text-align:center;
+    padding:16px 20px;font-size:1.18rem;font-style:italic;font-weight:500;}
+  .spruch button{margin-left:12px;border:none;background:#f0dcae;color:#7a5a14;border-radius:999px;width:30px;height:30px;cursor:pointer;font-size:1rem;}
+  /* Cards */
+  section{padding:50px 0;}
+  h2{font-size:1.7rem;color:var(--purple-d);margin:0 0 6px;font-weight:800;}
+  .sub{color:var(--grey);margin:0 0 28px;font-size:1.1rem;}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  a.tile{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);
+    border-radius:20px;padding:28px;box-shadow:0 8px 26px rgba(60,42,82,.06);transition:.18s;position:relative;overflow:hidden;}
+  a.tile:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(60,42,82,.13);}
+  a.tile .ic{font-size:2.4rem;display:block;margin-bottom:12px;}
+  a.tile h3{margin:0 0 6px;font-size:1.45rem;color:var(--purple-d);}
+  a.tile p{margin:0;color:var(--grey);font-size:1.02rem;}
+  a.tile .go{margin-top:14px;display:inline-block;font-weight:700;color:var(--purple);}
+  a.tile.accent{border-top:6px solid var(--purple);}
+  a.tile.study{border-top:6px solid var(--teal);} a.tile.study h3,a.tile.study .go{color:var(--teal);}
+  a.tile.fit{border-top:6px solid var(--green);} a.tile.fit h3,a.tile.fit .go{color:var(--green);}
+  .full{grid-column:1 / -1;}
+  footer{padding:40px 0 70px;text-align:center;color:var(--grey);font-size:1rem;}
+  footer b{color:var(--purple);}
+  @media(max-width:680px){ .grid{grid-template-columns:1fr;} header.hero{padding:48px 0 42px;} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="hi" id="greet">Schön, dass du da bist</p>
+    <h1>Dein Weg zur Steuerberaterin</h1>
+    <div class="countdown" id="countdown">
+      <div><div class="num" id="cdDays">–</div><div class="lbl">Tage</div></div>
+      <div><div class="num" id="cdWeeks">–</div><div class="lbl">Wochen</div></div>
+      <div><div class="num">06.10.</div><div class="lbl">Prüfung 2026</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="spruch" id="spruch"></div>
+
+<section><div class="wrap">
+  <h2>Lernen & Prüfung</h2>
+  <p class="sub">Alles für die Steuerberaterprüfung an einem Ort.</p>
+  <div class="grid">
+    <a class="tile study" href="steuerberater.html">
+      <span class="ic">🎓</span><h3>Steuerberater-Prüfung</h3>
+      <p>Ablauf, Termine, Prüfungsgebiete, zugelassene Hilfsmittel und die besten Ressourcen.</p>
+      <span class="go">Öffnen →</span>
+    </a>
+    <a class="tile study" href="klausuren.html">
+      <span class="ic">✍️</span><h3>Klausuren üben</h3>
+      <p>Übungsaufgaben mit Lösungen – und offizielle Klausuren direkt als PDF öffnen.</p>
+      <span class="go">Öffnen →</span>
+    </a>
+    <a class="tile study" href="lernmaterial.html">
+      <span class="ic">🔍</span><h3>Lernmaterial</h3>
+      <p>Deine durchsuchbare Sammlung – jeden Tag kannst du Neues hinzufügen.</p>
+      <span class="go">Öffnen →</span>
+    </a>
+    <a class="tile accent" href="Partnerin-Tagestracker.html">
+      <span class="ic">💧</span><h3>Mein Tag</h3>
+      <p>Wasser tracken und Essen eintragen – Kalorien & Eiweiß werden sofort berechnet.</p>
+      <span class="go">Öffnen →</span>
+    </a>
+  </div>
+</div></section>
+
+<section style="padding-top:0;"><div class="wrap">
+  <h2>Gesundheit & gemeinsames Projekt</h2>
+  <p class="sub">Stark im Kopf, stark im Körper – euer Plan zu zweit.</p>
+  <div class="grid">
+    <a class="tile fit full" href="plan-abnehmen.html">
+      <span class="ic">🥗</span><h3>Unser Abnehmplan</h3>
+      <p>Der gemeinsame 12-Wochen-Plan: Wochenziele, Essensplan mit Kalorien, Training und Regeln – für dich und deinen Partner.</p>
+      <span class="go">Öffnen →</span>
+    </a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  Ein Tag nach dem anderen. <b>Du schaffst das.</b> 💪<br>
+  Mein persönlicher Lern- & Lebensplan · Zypern 2026
+</div></footer>
+
+<script>
+// Begrüßung nach Tageszeit
+const h=new Date().getHours();
+document.getElementById("greet").textContent = h<11?"Guten Morgen ☀️": h<18?"Schön, dass du da bist":"Guten Abend 🌙";
+
+// Countdown bis 6. Oktober 2026
+const exam=new Date(2026,9,6);
+const today=new Date(); today.setHours(0,0,0,0);
+const days=Math.max(0,Math.round((exam-today)/86400000));
+document.getElementById("cdDays").textContent=days;
+document.getElementById("cdWeeks").textContent=Math.floor(days/7);
+
+// Spruch des Tages
+const SPRUECHE=[
+  "Jede geübte Klausur bringt dich näher ans Ziel.",
+  "Erst die Arbeit, dann das Meer – Zypern wartet auf dich. 🌊",
+  "Du musst nicht alles heute können, nur heute ein bisschen mehr als gestern.",
+  "§ für §, Tag für Tag – du wächst an dieser Prüfung.",
+  "Pausen sind kein Faulsein, sondern Teil des Lernens.",
+  "Atme tief durch: Du hast schon so viel geschafft.",
+  "Sonne, Kaffee, ein Gesetzbuch – und du packst das.",
+  "Ein Kapitel nach dem anderen. So besteht man Examen.",
+  "Zukünftige Steuerberaterin im Aufbau. 💪",
+  "Wer am Meer lernt, lernt mit Aussicht auf Erfolg.",
+  "Nicht perfekt, nur dran bleiben – das gewinnt am Ende."
+];
+const el=document.getElementById("spruch");
+let idx=Math.floor(Date.now()/86400000)%SPRUECHE.length;
+function show(){ el.innerHTML="„"+SPRUECHE[idx]+"“ <button title='Nächster Spruch' onclick='next()'>↻</button>"; }
+function next(){ idx=(idx+1)%SPRUECHE.length; show(); }
+show();
+</script>
+</body>
+</html>
